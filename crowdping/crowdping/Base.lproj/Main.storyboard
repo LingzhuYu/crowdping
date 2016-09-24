@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yzK-jG-Rcg">
-                                <frame key="frameInset" minY="85" width="375" height="505"/>
+                                <frame key="frameInset" minY="85" width="375" height="437"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RM-ks-0nV">
@@ -30,18 +30,36 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
-                                <frame key="frameInset" minX="163" minY="616" width="51" height="31"/>
+                                <frame key="frameInset" minX="16" minY="579" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="notifySwitchChanged:" destination="mgv-zU-Lnq" eventType="valueChanged" id="qDd-qV-oDi"/>
                                 </connections>
                             </switch>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-yh-JL9">
+                                <frame key="frameInset" minX="271" minY="580" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Police"/>
+                                <connections>
+                                    <action selector="notifyPolice:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="Y13-lU-RMM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-q8-IP3">
+                                <frame key="frameInset" minX="167" minY="580" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Circle"/>
+                                <connections>
+                                    <action selector="notifyCircle:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="WMx-bo-kLZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="circleButton" destination="Wuu-q8-IP3" id="SYN-io-1zz"/>
                         <outlet property="mapView" destination="yzK-jG-Rcg" id="sdy-nu-4RD"/>
                         <outlet property="notifySwitch" destination="xZV-bx-jNt" id="hMn-pT-ApA"/>
+                        <outlet property="policeButton" destination="7Bf-yh-JL9" id="TXZ-lk-U9G"/>
                         <outlet property="timeView" destination="3RM-ks-0nV" id="Kru-e3-Hj5"/>
                     </connections>
                 </viewController>

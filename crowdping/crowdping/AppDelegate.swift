@@ -173,7 +173,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillTerminate(_ application: UIApplication)
     {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        locationManager.stopMonitoring(for: rangedRegions[0])
+        
+        if rangedRegions.count > 0
+        {
+            locationManager.stopMonitoring(for: rangedRegions[0])
+        }
+        
         locationManager.stopUpdatingLocation()
         Notifications.removeObserver(startLocationMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(stopLocationMonitoringObserver, from: notificationCentre)

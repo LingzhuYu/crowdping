@@ -13,6 +13,7 @@ import Contacts
 
 class ViewController: UIViewController, MKMapViewDelegate
 {
+    @IBOutlet weak var notifyCircle: UIButton!
     let notificationCentre = NotificationCenter.default
     var beaconNearbyObserver : AnyObject?
     var beaconNotNearbyObserver : AnyObject?
@@ -20,11 +21,15 @@ class ViewController: UIViewController, MKMapViewDelegate
     var beaconNotRangedObserver : AnyObject?
     var locationUpdatedObserver : AnyObject?
     
-    @IBOutlet weak var notifySwitch: UISwitch!
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var notifySwitch: UISwitch!
+    @IBOutlet weak var policeButton: UIButton!
+    @IBOutlet weak var circleButton: UIButton!
     fileprivate var beaconFound = false
-    var annotations : [MKAnnotation] = []
+    fileprivate var annotations : [MKAnnotation] = []
+    fileprivate var timer : Timer?
+    fileprivate var startTime : NSDate?
     
     override func viewDidLoad()
     {
@@ -112,13 +117,32 @@ class ViewController: UIViewController, MKMapViewDelegate
         {
             Notifications.postStartLocationMonitoring(self)
             Notifications.postStartBeaconMonitoring(self)
+            timer = Timer.scheduledTimer(timeInterval: 1,
+                                     target: self,
+                                     selector: #selector(ViewController.updateTime),
+                                     userInfo: nil,
+                                     repeats: true)
+            startTime = NSDate()
         }
         else
         {
             Notifications.postStopLocationMonitoring(self)
             Notifications.postStopBeaconMonitoring(self)
+            timer?.invalidate()
+            timer = nil
+            startTime = nil
         }
         
+        circleButton.isEnabled = notifySwitch.isOn
+        policeButton.isEnabled = notifySwitch.isOn
+    }
+    
+    @IBAction func notifyCircle(_ sender: AnyObject)
+    {
+    }
+    
+    @IBAction func notifyPolice(_ sender: AnyObject)
+    {
     }
     
     // MARK: internal
@@ -238,4 +262,14 @@ class ViewController: UIViewController, MKMapViewDelegate
         return mapItem
     }
     */
+    
+    func updateTime()
+    {
+        let interval = startTime!.timeIntervalSinceNow * -1
+        let ti       = Int(interval)
+        let minutes  = (ti / 60) % 60
+        let hours    = (ti / 3600)
+        
+        timeView.text = String(format: "%0.2d:%0.2d", hours, minutes)
+    }
 }
