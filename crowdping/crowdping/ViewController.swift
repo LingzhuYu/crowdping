@@ -8,8 +8,10 @@
 
 import UIKit
 import CoreLocation
+import MapKit
+import Contacts
 
-class ViewController: UIViewController
+class ViewController: UIViewController, MKMapViewDelegate
 {
     let notificationCentre = NotificationCenter.default
     var beaconNearbyObserver : AnyObject?
@@ -18,19 +20,16 @@ class ViewController: UIViewController
     var beaconNotRangedObserver : AnyObject?
     var locationUpdatedObserver : AnyObject?
     
-    @IBOutlet weak var longitudeField: UITextField!
-    @IBOutlet weak var latitudeField: UITextField!
-    @IBOutlet weak var beaconButton: UIButton!
-    @IBOutlet weak var locationButton: UIButton!
-    @IBOutlet weak var rssiField: UITextField!
-    
-    fileprivate var locationMonitoring = false
-    fileprivate var beaconMonitoring = false
+    @IBOutlet weak var notifySwitch: UISwitch!
+    @IBOutlet weak var timeView: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
     fileprivate var beaconFound = false
+    var annotations : [MKAnnotation] = []
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+
         beaconNearbyObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconNearby),
                                                               object: nil,
                                                               queue: nil)
@@ -44,6 +43,7 @@ class ViewController: UIViewController
                 self.beaconNearby(location)
             }
         }
+        
         beaconNotNearbyObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconNotNearby),
                                                               object: nil,
                                                               queue: nil)
@@ -57,6 +57,7 @@ class ViewController: UIViewController
                 self.beaconNotNearby(location)
             }
         }
+        
         beaconRangedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconRanged),
                                                               object: nil,
                                                               queue: nil)
@@ -70,6 +71,7 @@ class ViewController: UIViewController
                 self.beaconRanged(rssi)
             }
         }
+        
         beaconNotRangedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconNotRanged),
                                                                  object: nil,
                                                                  queue: nil)
@@ -78,6 +80,7 @@ class ViewController: UIViewController
             print("BeaconNotRanged received")
             self.beaconNotRanged()
         }
+        
         locationUpdatedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.LocationUpdated),
                                                                  object: nil,
                                                                  queue: nil)
@@ -92,7 +95,9 @@ class ViewController: UIViewController
             }
         }
         
-        // Do any additional setup after loading the view, typically from a nib.
+        mapView.delegate          = self
+        mapView.showsUserLocation = true
+        mapView.showsScale        = true
     }
 
     override func didReceiveMemoryWarning()
@@ -100,37 +105,20 @@ class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func locationPressed(_ sender: AnyObject)
+
+    @IBAction func notifySwitchChanged(_ sender: AnyObject)
     {
-        print("locationPressed")
-        
-        if locationMonitoring
-        {
-            Notifications.postStopLocationMonitoring(self)
-        }
-        else
+        if notifySwitch.isOn
         {
             Notifications.postStartLocationMonitoring(self)
-        }
-        
-        locationMonitoring = !locationMonitoring
-    }
-    
-    @IBAction func beaconPressed(_ sender: AnyObject)
-    {
-        print("beaconPressed")
-        
-        if beaconMonitoring
-        {
-            Notifications.postStopBeaconMonitoring(self)
+            Notifications.postStartBeaconMonitoring(self)
         }
         else
         {
-            Notifications.postStartBeaconMonitoring(self)
+            Notifications.postStopLocationMonitoring(self)
+            Notifications.postStopBeaconMonitoring(self)
         }
         
-        beaconMonitoring = !beaconMonitoring
     }
     
     // MARK: internal
@@ -138,59 +126,116 @@ class ViewController: UIViewController
     fileprivate func beaconNearby(_ location: CLLocation!)
     {
         print("beaconNearby \(location)")
-        latitudeField.text = ""
-        longitudeField.text = ""
-        latitudeField.text = String(location.coordinate.latitude)
-        latitudeField.backgroundColor = .green
-        longitudeField.text = String(location.coordinate.longitude)
-        longitudeField.backgroundColor = .green
+        addLocation(location, found: true)
     }
     
     fileprivate func beaconNotNearby(_ location: CLLocation!)
     {
         print("beaconNotNearby \(location)")
-        latitudeField.text = ""
-        longitudeField.text = ""
-        latitudeField.text = String(location.coordinate.latitude)
-        latitudeField.backgroundColor = .red
-        longitudeField.text = String(location.coordinate.longitude)
-        longitudeField.backgroundColor = .red
+        addLocation(location, found: false)
     }
     
     fileprivate func beaconRanged(_ rssi: Int)
     {
         print("beaconRanged \(rssi)")
         beaconFound = true
-        rssiField.text = ""
-        rssiField.text = String(rssi)
-        rssiField.backgroundColor = .green
     }
     
     fileprivate func beaconNotRanged()
     {
         print("beaconNotRanged")
         beaconFound = false
-        rssiField.text = "<not in range>"
-        rssiField.backgroundColor = .red
     }
     
     fileprivate func locationUpdated(_ location: CLLocation!)
     {
         print("locationUpdated \(location)")
-        latitudeField.text = ""
-        longitudeField.text = ""
-        latitudeField.text = String(location.coordinate.latitude)
-        longitudeField.text = String(location.coordinate.longitude)
+        
+        addLocation(location, found: beaconFound)
         
         if beaconFound
         {
-            latitudeField.backgroundColor = .red
-            longitudeField.backgroundColor = .red
         }
         else
         {
-            latitudeField.backgroundColor = .green
-            longitudeField.backgroundColor = .green
         }
     }
+    
+    fileprivate func clearAnnotations()
+    {
+        mapView.removeAnnotations(annotations)
+        annotations.removeAll()
+    }
+    
+    func addLocation(_ location : CLLocation, found : Bool)
+    {
+        let annotation  = LocationAnotation(location.coordinate, found: found)
+        
+        annotations.append(annotation)
+        mapView.addAnnotations(annotations)
+        mapView.showAnnotations(annotations, animated: true)
+        mapView.camera.altitude *= 1.5
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
+    {
+        // log.debug("enter")
+        
+        if let _ = annotation as? MKUserLocation
+        {
+            // log.debug("exit")
+            return nil
+        }
+        
+        var view: MKPinAnnotationView
+        let identifier = "pin"
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKPinAnnotationView
+        {
+            dequeuedView.annotation = annotation
+            view                    = dequeuedView
+        }
+        else
+        {
+            view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = false
+            
+//            view.canShowCallout = true
+//            view.calloutOffset  = CGPoint(x: -5, y: 5)
+//            view.rightCalloutAccessoryView  = UIButton(type: .detailDisclosure) as UIView
+        }
+        
+        if let annotation = annotation as? LocationAnotation
+        {
+            if annotation.found
+            {
+                view.pinTintColor = UIColor.green
+            }
+            else
+            {
+                view.pinTintColor = UIColor.red
+            }
+        }
+        
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView,
+                 annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl)
+    {
+        let _ = view.annotation as! LocationAnotation
+    }
+    /*
+    func mapItem(_ view : MKAnnotationView) -> MKMapItem
+    {
+        let addressDictionary = [String(CNPostalAddressStreetKey) : view.annotation!.title!!]
+        let placemark = MKPlacemark(coordinate: view.annotation!.coordinate, addressDictionary: addressDictionary)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
+    */
 }

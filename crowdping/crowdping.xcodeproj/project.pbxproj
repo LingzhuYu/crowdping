@@ -16,6 +16,8 @@
 		C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042E71D960C25000C5CAC /* crowdpingTests.swift */; };
 		C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042F21D960C25000C5CAC /* crowdpingUITests.swift */; };
 		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
+		C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D357AD1D971527001E7387 /* MapKit.framework */; };
+		C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		C71042F21D960C25000C5CAC /* crowdpingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingUITests.swift; sourceTree = "<group>"; };
 		C71042F41D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +90,7 @@
 				C71042E61D960C25000C5CAC /* crowdpingTests */,
 				C71042F11D960C25000C5CAC /* crowdpingUITests */,
 				C71042CD1D960C24000C5CAC /* Products */,
+				C7D357AC1D971527001E7387 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +110,7 @@
 				C7D357AA1D96CCB0001E7387 /* Notifications.swift */,
 				C71042CF1D960C24000C5CAC /* AppDelegate.swift */,
 				C71042D11D960C24000C5CAC /* ViewController.swift */,
+				C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */,
 				C71042D31D960C24000C5CAC /* Main.storyboard */,
 				C71042D91D960C25000C5CAC /* Assets.xcassets */,
 				C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */,
@@ -129,6 +136,14 @@
 				C71042F41D960C25000C5CAC /* Info.plist */,
 			);
 			path = crowdpingUITests;
+			sourceTree = "<group>";
+		};
+		C7D357AC1D971527001E7387 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C7D357AD1D971527001E7387 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +220,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 					C71042E21D960C25000C5CAC = {
@@ -275,6 +293,7 @@
 			files = (
 				C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */,
 				C71042D21D960C24000C5CAC /* ViewController.swift in Sources */,
+				C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */,
 				C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */,
 				C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */,
 			);
