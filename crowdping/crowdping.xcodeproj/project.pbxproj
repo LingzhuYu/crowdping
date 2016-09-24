@@ -15,6 +15,7 @@
 		C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */; };
 		C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042E71D960C25000C5CAC /* crowdpingTests.swift */; };
 		C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042F21D960C25000C5CAC /* crowdpingUITests.swift */; };
+		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crowdpingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042F21D960C25000C5CAC /* crowdpingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingUITests.swift; sourceTree = "<group>"; };
 		C71042F41D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		C71042CE1D960C24000C5CAC /* crowdping */ = {
 			isa = PBXGroup;
 			children = (
+				C7D357AA1D96CCB0001E7387 /* Notifications.swift */,
 				C71042CF1D960C24000C5CAC /* AppDelegate.swift */,
 				C71042D11D960C24000C5CAC /* ViewController.swift */,
 				C71042D31D960C24000C5CAC /* Main.storyboard */,
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */,
 				C71042D21D960C24000C5CAC /* ViewController.swift in Sources */,
 				C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */,
 				C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */,

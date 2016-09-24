@@ -1,9 +1,9 @@
 //
-//AppDelegate.swift
-//BeaconTest
+//  AppDelegate.swift
+//  crowdping
 //
-//Created by D'Arcy Smith on 2016-09-15.
-//Copyright  2016 TerraTap Technologies Inc. All rights reserved.
+//  Created by D'Arcy Smith on 2016-09-24.
+//  Copyright © 2016 TerraTap Technologies, Inc. All rights reserved.
 //
 
 import Foundation
@@ -13,9 +13,14 @@ import CoreLocation
 import CoreBluetooth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate {
-    
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate
+{    
     var window: UIWindow?
+    let notificationCentre = NotificationCenter.default
+    var startLocationMonitoringObserver : AnyObject?
+    var stopLocationMonitoringObserver : AnyObject?
+    var startBeaconMonitoringObserver : AnyObject?
+    var stopBeaconMonitoringObserver : AnyObject?
     let locationManager = CLLocationManager()
     var peripheralManager : CBPeripheralManager!
     var rangedRegions : [CLBeaconRegion] = []
@@ -23,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var isUpdating = false
     var beaconsSeen : [(major : Int, minor : Int)] = []
     var newBeacons : [(major : Int, minor : Int)] = []
+    var clearBeacons = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -35,45 +41,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                                                queue: DispatchQueue.global(),
                                                options: options)
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-        
+        locationManager.delegate                           = self
+        locationManager.desiredAccuracy                    = kCLLocationAccuracyNearestTenMeters
         locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.activityType = .other
+        locationManager.activityType                       = .other
         
         if #available(iOS 9.0, *)
         {
             print("allowsBackgroundLocationUpdates")
             locationManager.allowsBackgroundLocationUpdates = true
-        }
-        
-        if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)
-        {
-            if CLLocationManager.isRangingAvailable()
-            {
-                // http://stackoverflow.com/questions/30101057/ibeacon-events-while-screen-is-off
-                locationManager.pausesLocationUpdatesAutomatically = false
-                
-                let region = CLBeaconRegion(proximityUUID: NSUUID(uuidString: "3724386F-04BF-427D-A4AD-34B4586791B5")! as UUID, identifier: "X")
-                
-                region.notifyOnEntry = true
-                region.notifyOnExit  = true
-                region.notifyEntryStateOnDisplay = true
-                rangedRegions.append(region)
-                
-                let status = CLLocationManager.authorizationStatus()
-                
-                if status == .authorizedAlways
-                {
-                    locationManager.startMonitoring(for: region)
-                    let delayTime = DispatchTime.now() + .seconds(5)
-                    
-                    DispatchQueue.main.asyncAfter(deadline:delayTime)
-                    {
-                        self.locationManager.requestState(for: region)
-                    }
-                }
-            }
         }
         
         if #available(iOS 10.0, *)
@@ -86,7 +62,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             application.registerUserNotificationSettings(settings)
         }
         
-        print("didFinishLaunchingWithOptions - DONE")
+        startLocationMonitoringObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.StartLocationMonitoring),
+                                                                         object: nil,
+                                                                         queue: nil)
+        {
+            (note) in
+            self.startLocationMonitoring()
+        }
+        
+        stopLocationMonitoringObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.StopLocationMonitoring),
+                                                                         object: nil,
+                                                                         queue: nil)
+        {
+            (note) in
+            self.stopLocationMonitoring()
+        }
+        
+        startBeaconMonitoringObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.StartBeaconMonitoring),
+                                                                         object: nil,
+                                                                         queue: nil)
+        {
+            (note) in
+            self.startBeaconMonitoring()
+        }
+        
+        stopBeaconMonitoringObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.StopBeaconMonitoring),
+                                                                         object: nil,
+                                                                         queue: nil)
+        {
+            (note) in
+            self.stopBeaconMonitoring()
+        }
         
         return true
     }
@@ -162,6 +168,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         locationManager.stopMonitoring(for: rangedRegions[0])
         locationManager.stopUpdatingLocation()
         isUpdating = false
+        Notifications.removeObserver(startLocationMonitoringObserver, from: notificationCentre)
+        Notifications.removeObserver(stopLocationMonitoringObserver, from: notificationCentre)
+        Notifications.removeObserver(startBeaconMonitoringObserver, from: notificationCentre)
+        Notifications.removeObserver(stopBeaconMonitoringObserver, from: notificationCentre)
     }
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager)
@@ -186,13 +196,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion)
     {
-        print("didExitRegion")
+        print("didExitRegion \(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion)
     {
-        print("didEnterRegion")
-        beaconsSeen.removeAll()
+        print("didEnterRegion \(region.identifier)")
     }
     
     func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool
@@ -204,7 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion)
     {
-        print("didStartMonitoringFor")
+        print("didStartMonitoringFor \(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
@@ -222,6 +231,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         newBeacons.removeAll()
+        
+        if clearBeacons
+        {
+            beaconsSeen.removeAll()
+            clearBeacons = false
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?)
@@ -252,7 +267,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
     {
-        print("didDetermineState")
+        print("didDetermineState \(region.identifier)")
         
         var previousState: CLRegionState?
         
@@ -270,12 +285,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 print("outside")
                 locationManager.stopRangingBeacons(in: region as! CLBeaconRegion)
                 isRanging = false
-                
-                if isUpdating
-                {
-                    locationManager.stopUpdatingLocation()
-                    isUpdating = false
-                }
             case .unknown:
                 print("unknown")
                 break
@@ -291,7 +300,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         beacons.forEach {
             (beacon) in
-            print("\(beacon.major) \(beacon.minor) \(beacon.rssi) \(beacon.accuracy)")
+            // print("\(beacon.major) \(beacon.minor) \(beacon.rssi) \(beacon.accuracy)")
             
             let major = Int(beacon.major)
             let minor = Int(beacon.minor)
@@ -314,7 +323,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
         if newBeacons.count > 0
         {
-            locationManager.requestLocation()
+//            print("asking for location")
+//            locationManager.requestLocation()
         }
         
         if state == .active
@@ -325,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error)
     {
-        print("monitoringDidFailFor \(error)")
+        print("monitoringDidFailFor \(region?.identifier) \(error)")
     }
     
     func locationManager(_ manager: CLLocationManager, rangingBeaconsDidFailFor region: CLBeaconRegion, withError error: Error)
@@ -394,5 +404,70 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic)
     {
         print("didUnsubscribeFrom")
+    }
+    
+    // MARK: internal
+    
+    fileprivate func startLocationMonitoring()
+    {
+        print("startLocationMonitoring")
+        locationManager.startMonitoringSignificantLocationChanges()
+    }
+    
+    fileprivate func stopLocationMonitoring()
+    {
+        print("stopLocationMonitoring")
+        locationManager.stopMonitoringSignificantLocationChanges()
+    }
+    
+    fileprivate func startBeaconMonitoring()
+    {
+        print("startBeaconMonitoring")
+        
+        if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)
+        {
+            if CLLocationManager.isRangingAvailable()
+            {
+                let status = CLLocationManager.authorizationStatus()
+                let region = CLBeaconRegion(proximityUUID: NSUUID(uuidString: "3724386F-04BF-427D-A4AD-34B4586791B5")! as UUID, identifier: "crowdping")
+                
+                region.notifyOnEntry = true
+                region.notifyOnExit  = true
+                region.notifyEntryStateOnDisplay = true
+                rangedRegions.append(region)
+                
+                if status == .authorizedAlways
+                {
+                    locationManager.startMonitoring(for: region)
+                    let delayTime = DispatchTime.now() + .seconds(1)
+                    
+                    DispatchQueue.main.asyncAfter(deadline:delayTime)
+                    {
+                        self.locationManager.requestState(for: region)
+                    }
+                }
+            }
+        }
+    }
+    
+    fileprivate func stopBeaconMonitoring()
+    {
+        print("stopBeaconMonitoring")
+        
+        if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)
+        {
+            if CLLocationManager.isRangingAvailable()
+            {
+                rangedRegions.forEach(
+                    {
+                        (region) in
+                        print("Stopping monitoring for \(region.identifier)")
+                        self.locationManager.stopRangingBeacons(in: region)
+                        self.locationManager.stopMonitoring(for: region)
+                    })
+            }
+            
+            rangedRegions.removeAll()
+        }
     }
 }

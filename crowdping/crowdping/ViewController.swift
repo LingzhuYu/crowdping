@@ -10,6 +10,12 @@ import UIKit
 
 class ViewController: UIViewController
 {
+    @IBOutlet weak var beaconButton: UIButton!
+    @IBOutlet weak var locationButon: UIButton!
+    
+    fileprivate var locationMonitoring = false
+    fileprivate var beaconMonitoring = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -20,5 +26,37 @@ class ViewController: UIViewController
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func locationPressed(_ sender: AnyObject)
+    {
+        print("locationPressed")
+        
+        if locationMonitoring
+        {
+            Notifications.postStopLocationMonitoring(self)
+        }
+        else
+        {
+            Notifications.postStartLocationMonitoring(self)
+        }
+        
+        locationMonitoring = !locationMonitoring
+    }
+    
+    @IBAction func beaconPressed(_ sender: AnyObject)
+    {
+        print("beaconPressed")
+        
+        if beaconMonitoring
+        {
+            Notifications.postStopBeaconMonitoring(self)
+        }
+        else
+        {
+            Notifications.postStartBeaconMonitoring(self)
+        }
+        
+        beaconMonitoring = !beaconMonitoring
     }
 }
