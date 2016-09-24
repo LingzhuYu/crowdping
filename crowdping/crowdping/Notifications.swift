@@ -24,7 +24,10 @@ class Notifications
     static let StartBeaconMonitoring = "StartBeaconMonitoring"
     static let StopBeaconMonitoring = "StopBeaconMonitoring"
     static let BeaconNearby = "BeaconNearby"
+    static let BeaconNotNearby = "BeaconNotNearby"
     static let BeaconRanged = "BeaconRanged"
+    static let BeaconNotRanged = "BeaconNotRanged"
+    static let LocationUpdated = "LocationUpdated"
     
     static func removeObserver(_ observer: AnyObject?, from: NotificationCenter!)
     {
@@ -69,14 +72,40 @@ class Notifications
         post(BeaconNearby, object: object, userInfo: userInfo)
     }
     
-    static func postBeaconRanged(_ object: AnyObject?, rssi : Int)
+    static func postBeaconNotNearby(_ object: AnyObject?, location: CLLocation!)
     {
         let userInfo =
             [
-                "rssi" : rssi
+                "location" : location
             ]
         
+        post(BeaconNotNearby, object: object, userInfo: userInfo)
+    }
+    
+    static func postBeaconRanged(_ object: AnyObject?, rssi : Int, location: CLLocation!)
+    {
+        let userInfo =
+            [
+                "rssi"     : rssi,
+                "location" : location
+            ] as [String : Any]
+        
         post(BeaconRanged, object: object, userInfo: userInfo)
+    }
+    
+    static func postBeaconNotRanged(_ object: AnyObject?)
+    {
+        post(BeaconNotRanged, object: object)
+    }
+    
+    static func postLocationUpdated(_ object: AnyObject?, location: CLLocation!)
+    {
+        let userInfo =
+            [
+                "location" : location
+            ]
+        
+        post(LocationUpdated, object: object, userInfo: userInfo)
     }
     
     static func getLocation(_ notification: Notification!) -> CLLocation?

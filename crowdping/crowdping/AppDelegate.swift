@@ -24,15 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     let locationManager = CLLocationManager()
     var peripheralManager : CBPeripheralManager!
     var rangedRegions : [CLBeaconRegion] = []
-    var isRanging = false
-    var isUpdating = false
     var beaconsSeen : [(major : Int, minor : Int)] = []
     var newBeacons : [(major : Int, minor : Int)] = []
     var clearBeacons = false
+    var desiredMajor : Int? = nil
+    var desiredMinor : Int? = nil
+    var currentLocation : CLLocation? = nil
+    var isInRange = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         print("didFinishLaunchingWithOptions")
+        
+        desiredMajor = 1
+        desiredMinor = 1
         
         // Override point for customization after application launch.
         locationManager.requestAlwaysAuthorization()
@@ -115,28 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        print("applicationWillResignActive \(isRanging)")
-        
-        if isRanging
-        {
-            let state = UIApplication.shared.applicationState
-            let stateName: String!
-            
-            switch(state)
-            {
-            case UIApplicationState.active:
-                stateName = "Active"
-            case UIApplicationState.background:
-                stateName = "Background"
-            case UIApplicationState.inactive:
-                stateName = "Inactive"
-            }
-            
-            print("starting updating locations A \(stateName!)")
-            locationManager.stopUpdatingLocation()
-            locationManager.startUpdatingLocation()
-            isUpdating = true
-        }
+        print("applicationWillResignActive")
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -153,13 +137,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         print("applicationDidBecomeActive")
-        
-        if isUpdating
-        {
-            print("stopping updating locations A")
-            locationManager.stopUpdatingLocation()
-            isUpdating = false
-        }
     }
     
     func applicationWillTerminate(_ application: UIApplication)
@@ -167,7 +144,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         locationManager.stopMonitoring(for: rangedRegions[0])
         locationManager.stopUpdatingLocation()
-        isUpdating = false
         Notifications.removeObserver(startLocationMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(stopLocationMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(startBeaconMonitoringObserver, from: notificationCentre)
@@ -225,25 +201,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     {
         print("didUpdateLocations")
         
-        let location = locations.last!
-        print("GPS \(location.coordinate)")
-        
-        Notifications.postBeaconNearby(self, location: location)
-
-        /*
-        newBeacons.forEach {
-            (beacon) in
-            print("uploading GPS for \(beacon.major).\(beacon.minor) - \(locations[0].coordinate)")
-        }
-        
-        newBeacons.removeAll()
-        
-        if clearBeacons
-        {
-            beaconsSeen.removeAll()
-            clearBeacons = false
-        }
-        */
+        currentLocation = locations.last!
+        print("GPS \(currentLocation!.coordinate)")
+        Notifications.postLocationUpdated(self, location: currentLocation)
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?)
@@ -287,11 +247,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             case .inside:
                 print("inside")
                 locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
-                isRanging = true
             case .outside:
                 print("outside")
                 locationManager.stopRangingBeacons(in: region as! CLBeaconRegion)
-                isRanging = false
             case .unknown:
                 print("unknown")
                 break
@@ -304,36 +262,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print("didRangeBeacons \(beacons.count)")
         
         let state = UIApplication.shared.applicationState
-        
-        beacons.forEach {
-            (beacon) in
-            // print("\(beacon.major) \(beacon.minor) \(beacon.rssi) \(beacon.accuracy)")
+        var foundBeacon : CLBeacon? = nil
+
+        if beacons.contains(where: {
+            (beacon) -> Bool in
             
             let major = Int(beacon.major)
             let minor = Int(beacon.minor)
             
-            if !(beaconsSeen.contains(
-                where:
-                {
-                    (info) in
-                    
-                    return info.major == major &&
-                           info.minor == minor
-                }))
+            foundBeacon = beacon
+            
+            return major == desiredMajor &&
+                   minor == desiredMinor
+        })
+        {
+            if !isInRange
             {
-                let beaconInfo = (major, minor)
-                
-                newBeacons.append(beaconInfo)
-                beaconsSeen.append(beaconInfo)
+                isInRange = true
+                Notifications.postBeaconNearby(self, location: currentLocation)
             }
         }
-
-        Notifications.postBeaconRanged(self, rssi: beacons[0].rssi)
-        
-        if newBeacons.count > 0
+        else
         {
-//            print("asking for location")
-//            locationManager.requestLocation()
+            isInRange = false
+            Notifications.postBeaconNotNearby(self, location: currentLocation)
+        }
+
+        if isInRange
+        {
+            print("\(foundBeacon?.rssi)")
+            
+            if foundBeacon?.rssi == 0
+            {
+                Notifications.postBeaconNotRanged(self)
+            }
+            else
+            {
+                Notifications.postBeaconRanged(self, rssi: foundBeacon!.rssi, location: currentLocation)
+            }
         }
         
         if state == .active

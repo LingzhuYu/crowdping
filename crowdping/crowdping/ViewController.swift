@@ -13,7 +13,10 @@ class ViewController: UIViewController
 {
     let notificationCentre = NotificationCenter.default
     var beaconNearbyObserver : AnyObject?
+    var beaconNotNearbyObserver : AnyObject?
     var beaconRangedObserver : AnyObject?
+    var beaconNotRangedObserver : AnyObject?
+    var locationUpdatedObserver : AnyObject?
     
     @IBOutlet weak var longitudeField: UITextField!
     @IBOutlet weak var latitudeField: UITextField!
@@ -23,6 +26,7 @@ class ViewController: UIViewController
     
     fileprivate var locationMonitoring = false
     fileprivate var beaconMonitoring = false
+    fileprivate var beaconFound = false
     
     override func viewDidLoad()
     {
@@ -40,6 +44,19 @@ class ViewController: UIViewController
                 self.beaconNearby(location)
             }
         }
+        beaconNotNearbyObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconNotNearby),
+                                                              object: nil,
+                                                              queue: nil)
+        {
+            (note) in
+            let location = Notifications.getLocation(note)
+            print("BeaconNotNearby received \(location)")
+            
+            if let location = location
+            {
+                self.beaconNotNearby(location)
+            }
+        }
         beaconRangedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconRanged),
                                                               object: nil,
                                                               queue: nil)
@@ -51,6 +68,27 @@ class ViewController: UIViewController
             if let rssi = rssi
             {
                 self.beaconRanged(rssi)
+            }
+        }
+        beaconNotRangedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.BeaconNotRanged),
+                                                                 object: nil,
+                                                                 queue: nil)
+        {
+            (note) in
+            print("BeaconNotRanged received")
+            self.beaconNotRanged()
+        }
+        locationUpdatedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.LocationUpdated),
+                                                                 object: nil,
+                                                                 queue: nil)
+        {
+            (note) in
+            let location = Notifications.getLocation(note)
+            print("LocationUpdated received \(location)")
+            
+            if let location = location
+            {
+                self.locationUpdated(location)
             }
         }
         
@@ -103,13 +141,56 @@ class ViewController: UIViewController
         latitudeField.text = ""
         longitudeField.text = ""
         latitudeField.text = String(location.coordinate.latitude)
+        latitudeField.backgroundColor = .green
         longitudeField.text = String(location.coordinate.longitude)
+        longitudeField.backgroundColor = .green
+    }
+    
+    fileprivate func beaconNotNearby(_ location: CLLocation!)
+    {
+        print("beaconNotNearby \(location)")
+        latitudeField.text = ""
+        longitudeField.text = ""
+        latitudeField.text = String(location.coordinate.latitude)
+        latitudeField.backgroundColor = .red
+        longitudeField.text = String(location.coordinate.longitude)
+        longitudeField.backgroundColor = .red
     }
     
     fileprivate func beaconRanged(_ rssi: Int)
     {
         print("beaconRanged \(rssi)")
+        beaconFound = true
         rssiField.text = ""
         rssiField.text = String(rssi)
+        rssiField.backgroundColor = .green
+    }
+    
+    fileprivate func beaconNotRanged()
+    {
+        print("beaconNotRanged")
+        beaconFound = false
+        rssiField.text = "<not in range>"
+        rssiField.backgroundColor = .red
+    }
+    
+    fileprivate func locationUpdated(_ location: CLLocation!)
+    {
+        print("locationUpdated \(location)")
+        latitudeField.text = ""
+        longitudeField.text = ""
+        latitudeField.text = String(location.coordinate.latitude)
+        longitudeField.text = String(location.coordinate.longitude)
+        
+        if beaconFound
+        {
+            latitudeField.backgroundColor = .red
+            longitudeField.backgroundColor = .red
+        }
+        else
+        {
+            latitudeField.backgroundColor = .green
+            longitudeField.backgroundColor = .green
+        }
     }
 }
