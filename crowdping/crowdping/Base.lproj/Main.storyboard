@@ -34,16 +34,41 @@
                                     <action selector="beaconPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LgJ-bz-yRt"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PQ4-dI-4r4">
+                                <frame key="frameInset" minX="16" minY="123" width="212" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I5A-Kw-B1G">
+                                <frame key="frameInset" minX="16" minY="239" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FqD-7C-uUU">
+                                <frame key="frameInset" minX="16" minY="173" width="212" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="beaconButton" destination="an5-If-kyN" id="c87-DP-nE0"/>
-                        <outlet property="locationButon" destination="wkR-ev-3DU" id="pXK-vM-cXk"/>
+                        <outlet property="latitudeField" destination="PQ4-dI-4r4" id="jfv-xr-pLI"/>
+                        <outlet property="locationButton" destination="wkR-ev-3DU" id="pXK-vM-cXk"/>
+                        <outlet property="longitudeField" destination="FqD-7C-uUU" id="fFf-os-JpC"/>
+                        <outlet property="rssiField" destination="I5A-Kw-B1G" id="q1r-ly-N2k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="83.208395802098963"/>
         </scene>
     </scenes>
 </document>

@@ -23,7 +23,8 @@ class Notifications
     static let StopLocationMonitoring = "StopLocationMonitoring"
     static let StartBeaconMonitoring = "StartBeaconMonitoring"
     static let StopBeaconMonitoring = "StopBeaconMonitoring"
-    static let PersonNearby = "PersonNearby"
+    static let BeaconNearby = "BeaconNearby"
+    static let BeaconRanged = "BeaconRanged"
     
     static func removeObserver(_ observer: AnyObject?, from: NotificationCenter!)
     {
@@ -58,22 +59,37 @@ class Notifications
         post(StopBeaconMonitoring, object: object)
     }
     
-    static func postPersonNearby(_ object: AnyObject?, location: CLLocation!)
+    static func postBeaconNearby(_ object: AnyObject?, location: CLLocation!)
     {
         let userInfo =
-        [
-            "location" : location
+            [
+                "location" : location
         ]
         
-        post(PersonNearby, object: object, userInfo: userInfo)
+        post(BeaconNearby, object: object, userInfo: userInfo)
     }
-
+    
+    static func postBeaconRanged(_ object: AnyObject?, rssi : Int)
+    {
+        let userInfo =
+            [
+                "rssi" : rssi
+            ]
+        
+        post(BeaconRanged, object: object, userInfo: userInfo)
+    }
+    
     static func getLocation(_ notification: Notification!) -> CLLocation?
     {
-        // log.debug("enter")
-        let location = notification.userInfo?["Location"] as? CLLocation
-        // log.debug("exit")
-    
+        let location = notification.userInfo?["location"] as? CLLocation
+        
         return location
+    }
+    
+    static func getRssi(_ notification: Notification!) -> Int?
+    {
+        let rssi = notification.userInfo?["rssi"] as? Int
+        
+        return rssi
     }
 }

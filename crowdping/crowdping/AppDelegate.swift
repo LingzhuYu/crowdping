@@ -225,6 +225,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     {
         print("didUpdateLocations")
         
+        let location = locations.last!
+        print("GPS \(location.coordinate)")
+        
+        Notifications.postBeaconNearby(self, location: location)
+
+        /*
         newBeacons.forEach {
             (beacon) in
             print("uploading GPS for \(beacon.major).\(beacon.minor) - \(locations[0].coordinate)")
@@ -237,6 +243,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             beaconsSeen.removeAll()
             clearBeacons = false
         }
+        */
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?)
@@ -321,6 +328,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
         }
 
+        Notifications.postBeaconRanged(self, rssi: beacons[0].rssi)
+        
         if newBeacons.count > 0
         {
 //            print("asking for location")
@@ -411,13 +420,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     fileprivate func startLocationMonitoring()
     {
         print("startLocationMonitoring")
-        locationManager.startMonitoringSignificantLocationChanges()
+        locationManager.distanceFilter = 100
+        locationManager.startUpdatingLocation()
     }
     
     fileprivate func stopLocationMonitoring()
     {
         print("stopLocationMonitoring")
-        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.stopUpdatingLocation()
     }
     
     fileprivate func startBeaconMonitoring()
