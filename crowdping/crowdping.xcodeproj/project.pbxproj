@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042CF1D960C24000C5CAC /* AppDelegate.swift */; };
+		C71042D21D960C24000C5CAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042D11D960C24000C5CAC /* ViewController.swift */; };
+		C71042D51D960C24000C5CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042D31D960C24000C5CAC /* Main.storyboard */; };
+		C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C71042D61D960C25000C5CAC /* crowdping.xcdatamodeld */; };
+		C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71042D91D960C25000C5CAC /* Assets.xcassets */; };
+		C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */; };
+		C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042E71D960C25000C5CAC /* crowdpingTests.swift */; };
+		C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042F21D960C25000C5CAC /* crowdpingUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C71042E41D960C25000C5CAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C71042C41D960C24000C5CAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C71042CB1D960C24000C5CAC;
+			remoteInfo = crowdping;
+		};
+		C71042EF1D960C25000C5CAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C71042C41D960C24000C5CAC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C71042CB1D960C24000C5CAC;
+			remoteInfo = crowdping;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C71042CC1D960C24000C5CAC /* crowdping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdping.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71042CF1D960C24000C5CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C71042D11D960C24000C5CAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C71042D41D960C24000C5CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C71042D71D960C25000C5CAC /* crowdping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = crowdping.xcdatamodel; sourceTree = "<group>"; };
+		C71042D91D960C25000C5CAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C71042DC1D960C25000C5CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C71042DE1D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C71042E31D960C25000C5CAC /* crowdpingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crowdpingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71042E71D960C25000C5CAC /* crowdpingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingTests.swift; sourceTree = "<group>"; };
+		C71042E91D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crowdpingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C71042F21D960C25000C5CAC /* crowdpingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingUITests.swift; sourceTree = "<group>"; };
+		C71042F41D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C71042C91D960C24000C5CAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042E01D960C25000C5CAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042EB1D960C25000C5CAC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C71042C31D960C24000C5CAC = {
+			isa = PBXGroup;
+			children = (
+				C71042CE1D960C24000C5CAC /* crowdping */,
+				C71042E61D960C25000C5CAC /* crowdpingTests */,
+				C71042F11D960C25000C5CAC /* crowdpingUITests */,
+				C71042CD1D960C24000C5CAC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C71042CD1D960C24000C5CAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C71042CC1D960C24000C5CAC /* crowdping.app */,
+				C71042E31D960C25000C5CAC /* crowdpingTests.xctest */,
+				C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C71042CE1D960C24000C5CAC /* crowdping */ = {
+			isa = PBXGroup;
+			children = (
+				C71042CF1D960C24000C5CAC /* AppDelegate.swift */,
+				C71042D11D960C24000C5CAC /* ViewController.swift */,
+				C71042D31D960C24000C5CAC /* Main.storyboard */,
+				C71042D91D960C25000C5CAC /* Assets.xcassets */,
+				C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */,
+				C71042DE1D960C25000C5CAC /* Info.plist */,
+				C71042D61D960C25000C5CAC /* crowdping.xcdatamodeld */,
+			);
+			path = crowdping;
+			sourceTree = "<group>";
+		};
+		C71042E61D960C25000C5CAC /* crowdpingTests */ = {
+			isa = PBXGroup;
+			children = (
+				C71042E71D960C25000C5CAC /* crowdpingTests.swift */,
+				C71042E91D960C25000C5CAC /* Info.plist */,
+			);
+			path = crowdpingTests;
+			sourceTree = "<group>";
+		};
+		C71042F11D960C25000C5CAC /* crowdpingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C71042F21D960C25000C5CAC /* crowdpingUITests.swift */,
+				C71042F41D960C25000C5CAC /* Info.plist */,
+			);
+			path = crowdpingUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C71042CB1D960C24000C5CAC /* crowdping */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C71042F71D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdping" */;
+			buildPhases = (
+				C71042C81D960C24000C5CAC /* Sources */,
+				C71042C91D960C24000C5CAC /* Frameworks */,
+				C71042CA1D960C24000C5CAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = crowdping;
+			productName = crowdping;
+			productReference = C71042CC1D960C24000C5CAC /* crowdping.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C71042E21D960C25000C5CAC /* crowdpingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C71042FA1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingTests" */;
+			buildPhases = (
+				C71042DF1D960C25000C5CAC /* Sources */,
+				C71042E01D960C25000C5CAC /* Frameworks */,
+				C71042E11D960C25000C5CAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C71042E51D960C25000C5CAC /* PBXTargetDependency */,
+			);
+			name = crowdpingTests;
+			productName = crowdpingTests;
+			productReference = C71042E31D960C25000C5CAC /* crowdpingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C71042ED1D960C25000C5CAC /* crowdpingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C71042FD1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingUITests" */;
+			buildPhases = (
+				C71042EA1D960C25000C5CAC /* Sources */,
+				C71042EB1D960C25000C5CAC /* Frameworks */,
+				C71042EC1D960C25000C5CAC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C71042F01D960C25000C5CAC /* PBXTargetDependency */,
+			);
+			name = crowdpingUITests;
+			productName = crowdpingUITests;
+			productReference = C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C71042C41D960C24000C5CAC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "TerraTap Technologies, Inc.";
+				TargetAttributes = {
+					C71042CB1D960C24000C5CAC = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L9GR6R2227;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					C71042E21D960C25000C5CAC = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L9GR6R2227;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C71042CB1D960C24000C5CAC;
+					};
+					C71042ED1D960C25000C5CAC = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L9GR6R2227;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C71042CB1D960C24000C5CAC;
+					};
+				};
+			};
+			buildConfigurationList = C71042C71D960C24000C5CAC /* Build configuration list for PBXProject "crowdping" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C71042C31D960C24000C5CAC;
+			productRefGroup = C71042CD1D960C24000C5CAC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C71042CB1D960C24000C5CAC /* crowdping */,
+				C71042E21D960C25000C5CAC /* crowdpingTests */,
+				C71042ED1D960C25000C5CAC /* crowdpingUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C71042CA1D960C24000C5CAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */,
+				C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */,
+				C71042D51D960C24000C5CAC /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042E11D960C25000C5CAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042EC1D960C25000C5CAC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C71042C81D960C24000C5CAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C71042D21D960C24000C5CAC /* ViewController.swift in Sources */,
+				C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */,
+				C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042DF1D960C25000C5CAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C71042EA1D960C25000C5CAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C71042E51D960C25000C5CAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C71042CB1D960C24000C5CAC /* crowdping */;
+			targetProxy = C71042E41D960C25000C5CAC /* PBXContainerItemProxy */;
+		};
+		C71042F01D960C25000C5CAC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C71042CB1D960C24000C5CAC /* crowdping */;
+			targetProxy = C71042EF1D960C25000C5CAC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C71042D31D960C24000C5CAC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C71042D41D960C24000C5CAC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C71042DC1D960C25000C5CAC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C71042F51D960C25000C5CAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C71042F61D960C25000C5CAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C71042F81D960C25000C5CAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C71042F91D960C25000C5CAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdping/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdping;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		C71042FB1D960C25000C5CAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdpingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdpingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/crowdping.app/crowdping";
+			};
+			name = Debug;
+		};
+		C71042FC1D960C25000C5CAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdpingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdpingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/crowdping.app/crowdping";
+			};
+			name = Release;
+		};
+		C71042FE1D960C25000C5CAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdpingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdpingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = crowdping;
+			};
+			name = Debug;
+		};
+		C71042FF1D960C25000C5CAC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = L9GR6R2227;
+				INFOPLIST_FILE = crowdpingUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.terratap.crowdpingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = crowdping;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C71042C71D960C24000C5CAC /* Build configuration list for PBXProject "crowdping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C71042F51D960C25000C5CAC /* Debug */,
+				C71042F61D960C25000C5CAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C71042F71D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdping" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C71042F81D960C25000C5CAC /* Debug */,
+				C71042F91D960C25000C5CAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C71042FA1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C71042FB1D960C25000C5CAC /* Debug */,
+				C71042FC1D960C25000C5CAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C71042FD1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C71042FE1D960C25000C5CAC /* Debug */,
+				C71042FF1D960C25000C5CAC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C71042D61D960C25000C5CAC /* crowdping.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C71042D71D960C25000C5CAC /* crowdping.xcdatamodel */,
+			);
+			currentVersion = C71042D71D960C25000C5CAC /* crowdping.xcdatamodel */;
+			path = crowdping.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C71042C41D960C24000C5CAC /* Project object */;
+}
