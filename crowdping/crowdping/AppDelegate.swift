@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var rangedRegions : [CLBeaconRegion] = []
     var isRanging = false
     var isUpdating = false
-    var beaconsSeen : [CLBeacon] = []
-    var currentBeacons : [CLBeacon] = []
+    var beaconsSeen : [(major : Int, minor : Int)] = []
+    var newBeacons : [(major : Int, minor : Int)] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -216,7 +216,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     {
         print("didUpdateLocations")
         
-        beaconsSeen.append(contentsOf: currentBeacons)
+        newBeacons.forEach {
+            (beacon) in
+            print("uploading GPS for \(beacon.major).\(beacon.minor) - \(locations[0].coordinate)")
+        }
+        
+        newBeacons.removeAll()
     }
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?)
@@ -284,15 +289,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let state = UIApplication.shared.applicationState
         
-        /*
         beacons.forEach {
             (beacon) in
             print("\(beacon.major) \(beacon.minor) \(beacon.rssi) \(beacon.accuracy)")
+            
+            let major = Int(beacon.major)
+            let minor = Int(beacon.minor)
+            
+            if !(beaconsSeen.contains(
+                where:
+                {
+                    (info) in
+                    
+                    return info.major == major &&
+                           info.minor == minor
+                }))
+            {
+                let beaconInfo = (major, minor)
+                
+                newBeacons.append(beaconInfo)
+                beaconsSeen.append(beaconInfo)
+            }
         }
-        */
-        
-        currentBeacons = rangedRegions
-        locationManager.requestLocation()
+
+        if newBeacons.count > 0
+        {
+            locationManager.requestLocation()
+        }
         
         if state == .active
         {
