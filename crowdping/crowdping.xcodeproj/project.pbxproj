@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CA658A7D17538E3B6573ADD /* Pods_crowdpingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B991D81F57C0C92618C1808 /* Pods_crowdpingTests.framework */; };
+		6ED7D3583F49DEA7A440FF9B /* Pods_crowdping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4A8963B5608CF533A7F899 /* Pods_crowdping.framework */; };
+		8BEC45A51D9734490075612F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC45A41D9734490075612F /* GoogleService-Info.plist */; };
+		8BEC45A71D9734590075612F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC45A61D9734590075612F /* GoogleService-Info.plist */; };
+		8BEC45A91D9734630075612F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC45A81D9734630075612F /* GoogleService-Info.plist */; };
+		B758B1A87F9693C13C37DBDA /* Pods_crowdpingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0EE376AA6C1A76CDB03D74 /* Pods_crowdpingUITests.framework */; };
 		C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042CF1D960C24000C5CAC /* AppDelegate.swift */; };
 		C71042D21D960C24000C5CAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042D11D960C24000C5CAC /* ViewController.swift */; };
 		C71042D51D960C24000C5CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042D31D960C24000C5CAC /* Main.storyboard */; };
@@ -38,6 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01611B64FF2CA9D94A412C24 /* Pods-crowdping.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdping.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdping/Pods-crowdping.debug.xcconfig"; sourceTree = "<group>"; };
+		1B630DF865FD4E22972EFE12 /* Pods-crowdpingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdpingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-crowdpingUITests/Pods-crowdpingUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1B991D81F57C0C92618C1808 /* Pods_crowdpingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdpingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7344B0756D1BADC3BD3AD8F7 /* Pods-crowdpingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdpingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-crowdpingTests/Pods-crowdpingTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B0EBD2E1D973C9C00216125 /* crowdping.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = crowdping.entitlements; sourceTree = "<group>"; };
+		8BEC45A41D9734490075612F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8BEC45A61D9734590075612F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8BEC45A81D9734630075612F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8D0EE376AA6C1A76CDB03D74 /* Pods_crowdpingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdpingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D09C23E16F4419688DCAA0 /* Pods-crowdpingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdpingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdpingUITests/Pods-crowdpingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A83FD38F4EF9C505C0BECC66 /* Pods-crowdping.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdping.release.xcconfig"; path = "Pods/Target Support Files/Pods-crowdping/Pods-crowdping.release.xcconfig"; sourceTree = "<group>"; };
+		AD4A8963B5608CF533A7F899 /* Pods_crowdping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042CC1D960C24000C5CAC /* crowdping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042CF1D960C24000C5CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C71042D11D960C24000C5CAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +73,7 @@
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
+		D26A76D8A687683DF54BB5CD /* Pods-crowdpingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-crowdpingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-crowdpingTests/Pods-crowdpingTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */,
+				6ED7D3583F49DEA7A440FF9B /* Pods_crowdping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CA658A7D17538E3B6573ADD /* Pods_crowdpingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +98,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B758B1A87F9693C13C37DBDA /* Pods_crowdpingUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4102FE10115E6A26A3A12475 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01611B64FF2CA9D94A412C24 /* Pods-crowdping.debug.xcconfig */,
+				A83FD38F4EF9C505C0BECC66 /* Pods-crowdping.release.xcconfig */,
+				D26A76D8A687683DF54BB5CD /* Pods-crowdpingTests.debug.xcconfig */,
+				7344B0756D1BADC3BD3AD8F7 /* Pods-crowdpingTests.release.xcconfig */,
+				95D09C23E16F4419688DCAA0 /* Pods-crowdpingUITests.debug.xcconfig */,
+				1B630DF865FD4E22972EFE12 /* Pods-crowdpingUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C71042C31D960C24000C5CAC = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +126,7 @@
 				C71042F11D960C25000C5CAC /* crowdpingUITests */,
 				C71042CD1D960C24000C5CAC /* Products */,
 				C7D357AC1D971527001E7387 /* Frameworks */,
+				4102FE10115E6A26A3A12475 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +143,8 @@
 		C71042CE1D960C24000C5CAC /* crowdping */ = {
 			isa = PBXGroup;
 			children = (
+				8B0EBD2E1D973C9C00216125 /* crowdping.entitlements */,
+				8BEC45A41D9734490075612F /* GoogleService-Info.plist */,
 				C7D357AA1D96CCB0001E7387 /* Notifications.swift */,
 				C71042CF1D960C24000C5CAC /* AppDelegate.swift */,
 				C71042D11D960C24000C5CAC /* ViewController.swift */,
@@ -123,6 +161,7 @@
 		C71042E61D960C25000C5CAC /* crowdpingTests */ = {
 			isa = PBXGroup;
 			children = (
+				8BEC45A81D9734630075612F /* GoogleService-Info.plist */,
 				C71042E71D960C25000C5CAC /* crowdpingTests.swift */,
 				C71042E91D960C25000C5CAC /* Info.plist */,
 			);
@@ -132,6 +171,7 @@
 		C71042F11D960C25000C5CAC /* crowdpingUITests */ = {
 			isa = PBXGroup;
 			children = (
+				8BEC45A61D9734590075612F /* GoogleService-Info.plist */,
 				C71042F21D960C25000C5CAC /* crowdpingUITests.swift */,
 				C71042F41D960C25000C5CAC /* Info.plist */,
 			);
@@ -142,6 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				C7D357AD1D971527001E7387 /* MapKit.framework */,
+				AD4A8963B5608CF533A7F899 /* Pods_crowdping.framework */,
+				1B991D81F57C0C92618C1808 /* Pods_crowdpingTests.framework */,
+				8D0EE376AA6C1A76CDB03D74 /* Pods_crowdpingUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -153,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C71042F71D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdping" */;
 			buildPhases = (
+				54DA63D4526D28C0F312E4B0 /* [CP] Check Pods Manifest.lock */,
 				C71042C81D960C24000C5CAC /* Sources */,
 				C71042C91D960C24000C5CAC /* Frameworks */,
 				C71042CA1D960C24000C5CAC /* Resources */,
+				99126770C7ECD791E3094EFD /* [CP] Embed Pods Frameworks */,
+				EFCB98DDF53AC930211E9EDA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C71042FA1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingTests" */;
 			buildPhases = (
+				E4E35577F2D29C94A6B46395 /* [CP] Check Pods Manifest.lock */,
 				C71042DF1D960C25000C5CAC /* Sources */,
 				C71042E01D960C25000C5CAC /* Frameworks */,
 				C71042E11D960C25000C5CAC /* Resources */,
+				739595CBD94196EE90287B38 /* [CP] Embed Pods Frameworks */,
+				E778777B8B740F4B0BD1CA2B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,9 +237,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C71042FD1D960C25000C5CAC /* Build configuration list for PBXNativeTarget "crowdpingUITests" */;
 			buildPhases = (
+				7F5F8F8B9ED4D3E048EB5C60 /* [CP] Check Pods Manifest.lock */,
 				C71042EA1D960C25000C5CAC /* Sources */,
 				C71042EB1D960C25000C5CAC /* Frameworks */,
 				C71042EC1D960C25000C5CAC /* Resources */,
+				A876775199C53D5D6E2FCFBB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,6 +272,9 @@
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -265,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */,
+				8BEC45A51D9734490075612F /* GoogleService-Info.plist in Resources */,
 				C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */,
 				C71042D51D960C24000C5CAC /* Main.storyboard in Resources */,
 			);
@@ -274,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEC45A91D9734630075612F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,10 +337,134 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEC45A71D9734590075612F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54DA63D4526D28C0F312E4B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		739595CBD94196EE90287B38 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crowdpingTests/Pods-crowdpingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F5F8F8B9ED4D3E048EB5C60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		99126770C7ECD791E3094EFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crowdping/Pods-crowdping-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A876775199C53D5D6E2FCFBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crowdpingUITests/Pods-crowdpingUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4E35577F2D29C94A6B46395 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E778777B8B740F4B0BD1CA2B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crowdpingTests/Pods-crowdpingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFCB98DDF53AC930211E9EDA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-crowdping/Pods-crowdping-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C71042C81D960C24000C5CAC /* Sources */ = {
@@ -443,8 +623,10 @@
 		};
 		C71042F81D960C25000C5CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01611B64FF2CA9D94A412C24 /* Pods-crowdping.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = crowdping/crowdping.entitlements;
 				DEVELOPMENT_TEAM = L9GR6R2227;
 				INFOPLIST_FILE = crowdping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -457,8 +639,10 @@
 		};
 		C71042F91D960C25000C5CAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A83FD38F4EF9C505C0BECC66 /* Pods-crowdping.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = crowdping/crowdping.entitlements;
 				DEVELOPMENT_TEAM = L9GR6R2227;
 				INFOPLIST_FILE = crowdping/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
@@ -471,6 +655,7 @@
 		};
 		C71042FB1D960C25000C5CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D26A76D8A687683DF54BB5CD /* Pods-crowdpingTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -486,6 +671,7 @@
 		};
 		C71042FC1D960C25000C5CAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7344B0756D1BADC3BD3AD8F7 /* Pods-crowdpingTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,6 +687,7 @@
 		};
 		C71042FE1D960C25000C5CAC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95D09C23E16F4419688DCAA0 /* Pods-crowdpingUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = L9GR6R2227;
@@ -515,6 +702,7 @@
 		};
 		C71042FF1D960C25000C5CAC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B630DF865FD4E22972EFE12 /* Pods-crowdpingUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = L9GR6R2227;

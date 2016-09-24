@@ -11,6 +11,8 @@ import UIKit
 import AudioToolbox
 import CoreLocation
 import CoreBluetooth
+import Firebase
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate
@@ -35,6 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         print("didFinishLaunchingWithOptions")
+        
+        // Firebase configuration
+        
+        FIRApp.configure()
+        
+        let notificationSettings = UIUserNotificationSettings(
+            types: [.badge, .sound, .alert], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
+        
+        // End Firebase configuration
         
         desiredMajor = 1
         desiredMinor = 1
@@ -104,7 +116,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
     {
-        print("didRegister")
+        print("****************** FIRE MESSAGING ***********************")
+        if notificationSettings.types != .none {
+            application.registerForRemoteNotifications()
+            
+            FIRMessaging.messaging().connect { (error) in
+                if (error != nil) {
+                    print("[FCM] Unable to connect with FCM. \(error)")
+                } else {
+                    print("[FCM] Connected to FCM.")
+                }
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register device:", error)
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Registration successful with a device token")
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification)
