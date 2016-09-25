@@ -64,7 +64,7 @@ class State
         // Configure a new action for sharing the note in Twitter.
         let tweetAction = UIAlertAction(title: "Share on Twitter", style: UIAlertActionStyle.default) { (action) -> Void in
             let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            vc!.setInitialText("We're helping people find lost Alzheimer's patients! Please like @crowdping and join the search test #HackVSW")
+            vc!.setInitialText("We're helping people find lost Alzheimer's patients! Please like @crowd_ping and join the search test #HackVSW")
             view.present(vc!, animated: true, completion: nil)
         }
         
