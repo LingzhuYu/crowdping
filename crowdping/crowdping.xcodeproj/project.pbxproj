@@ -38,6 +38,8 @@
 		C77E13B41D9756E700B79FC1 /* Icon-App-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13A31D9756E700B79FC1 /* Icon-App-60x60@2x.png */; };
 		C77E13B51D9756E700B79FC1 /* Icon-App-76x76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13A41D9756E700B79FC1 /* Icon-App-76x76@3x.png */; };
 		C77E13B61D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13A51D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png */; };
+		C77E13BD1D97707F00B79FC1 /* button alert police.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13BB1D97707F00B79FC1 /* button alert police.pdf */; };
+		C77E13C01D9770BF00B79FC1 /* button alert_circles.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */; };
 		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
 		C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D357AD1D971527001E7387 /* MapKit.framework */; };
 		C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */; };
@@ -104,6 +106,8 @@
 		C77E13A31D9756E700B79FC1 /* Icon-App-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-60x60@2x.png"; path = "crowdping/icons/Icon-App-60x60@2x.png"; sourceTree = "<group>"; };
 		C77E13A41D9756E700B79FC1 /* Icon-App-76x76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-76x76@3x.png"; path = "crowdping/icons/Icon-App-76x76@3x.png"; sourceTree = "<group>"; };
 		C77E13A51D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-83.5x83.5@2x.png"; path = "crowdping/icons/Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
+		C77E13BB1D97707F00B79FC1 /* button alert police.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert police.pdf"; path = "crowdping/images/button alert police.pdf"; sourceTree = "<group>"; };
+		C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_circles.pdf"; path = "crowdping/images/button alert_circles.pdf"; sourceTree = "<group>"; };
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 		C77E138F1D97514800B79FC1 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */,
+				C77E13BB1D97707F00B79FC1 /* button alert police.pdf */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -389,10 +395,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C77E13B61D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png in Resources */,
+				C77E13C01D9770BF00B79FC1 /* button alert_circles.pdf in Resources */,
 				C77E13A91D9756E700B79FC1 /* Icon-App-29x29@2x.png in Resources */,
 				C77E13B31D9756E700B79FC1 /* Icon-App-60x60@1x.png in Resources */,
 				C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */,
 				C77E13B41D9756E700B79FC1 /* Icon-App-60x60@2x.png in Resources */,
+				C77E13BD1D97707F00B79FC1 /* button alert police.pdf in Resources */,
 				C77E13AC1D9756E700B79FC1 /* Icon-App-40x40@3x.png in Resources */,
 				C77E13A61D9756E700B79FC1 /* Icon-App-20x20@2x.png in Resources */,
 				C77E13B11D9756E700B79FC1 /* Icon-App-20x20@1x.png in Resources */,
