@@ -42,6 +42,7 @@
 		C77E13C01D9770BF00B79FC1 /* button alert_circles.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */; };
 		C77E13C21D977C5400B79FC1 /* RangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E13C11D977C5400B79FC1 /* RangeViewController.swift */; };
 		C77E13C41D9783F900B79FC1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E13C31D9783F900B79FC1 /* State.swift */; };
+		C7D3302E1D9857ED00CEB890 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D3302D1D9857ED00CEB890 /* Social.framework */; };
 		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
 		C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D357AD1D971527001E7387 /* MapKit.framework */; };
 		C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */; };
@@ -112,6 +113,7 @@
 		C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_circles.pdf"; path = "crowdping/images/button alert_circles.pdf"; sourceTree = "<group>"; };
 		C77E13C11D977C5400B79FC1 /* RangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeViewController.swift; sourceTree = "<group>"; };
 		C77E13C31D9783F900B79FC1 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		C7D3302D1D9857ED00CEB890 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D3302E1D9857ED00CEB890 /* Social.framework in Frameworks */,
 				C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */,
 				6ED7D3583F49DEA7A440FF9B /* Pods_crowdping.framework in Frameworks */,
 			);
@@ -260,6 +263,7 @@
 		C7D357AC1D971527001E7387 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C7D3302D1D9857ED00CEB890 /* Social.framework */,
 				C7D357AD1D971527001E7387 /* MapKit.framework */,
 				AD4A8963B5608CF533A7F899 /* Pods_crowdping.framework */,
 				1B991D81F57C0C92618C1808 /* Pods_crowdpingTests.framework */,

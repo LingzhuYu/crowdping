@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit
 import Alamofire
+import Social
 
 class State
 {
@@ -51,4 +53,35 @@ class State
                 application.openURL(phoneCallURL)
             }
         }
-    }}
+    }
+    
+    static func sendToSocial(_ view : UIViewController!)
+    {
+        print("Social Sharing")
+        let actionSheet = UIAlertController(title: "",
+                                            message: "Share your Note",
+                                            preferredStyle: .actionSheet)
+        // Configure a new action for sharing the note in Twitter.
+        let tweetAction = UIAlertAction(title: "Share on Twitter", style: UIAlertActionStyle.default) { (action) -> Void in
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            vc!.setInitialText("We're helping people find lost Alzheimer's patients! Please like @crowdping and join the search test #HackVSW")
+            view.present(vc!, animated: true, completion: nil)
+        }
+        
+        // Configure a new action to share on Facebook.
+        let facebookPostAction = UIAlertAction(title: "Share on Facebook", style: UIAlertActionStyle.default) { (action) -> Void in
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            vc!.setInitialText("This is a test from the hackathon")
+            view.present(vc!, animated: true, completion: nil)
+        }
+        
+        let dismissAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.cancel) { (action) -> Void in
+        }
+        
+        actionSheet.addAction(facebookPostAction)
+        actionSheet.addAction(tweetAction)
+        actionSheet.addAction(dismissAction)
+        
+        view.present(actionSheet, animated: true, completion: nil)
+    }
+}

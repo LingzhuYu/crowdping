@@ -12,6 +12,7 @@ import MapKit
 import Contacts
 import Alamofire
 import SwiftyJSON
+import Social
 
 class MapViewController: UIViewController, MKMapViewDelegate
 {
@@ -187,14 +188,23 @@ class MapViewController: UIViewController, MKMapViewDelegate
         }
         alertController.addAction(cancelAction)
         
-        let OKAction = UIAlertAction(
-            title: "OK",
+        let CircleAction = UIAlertAction(
+            title: "My Circle",
             style: .default)
         {
             (action) in
             State.sendNotificationToCircle()
         }
-        alertController.addAction(OKAction)
+        alertController.addAction(CircleAction)
+        
+        let SocialAction = UIAlertAction(
+            title: "Social Media",
+            style: .default)
+        {
+            (action) in
+            State.sendToSocial(self)
+        }
+        alertController.addAction(SocialAction)
         
         present(alertController, animated: true)
         {
