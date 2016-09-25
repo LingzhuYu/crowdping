@@ -18,43 +18,25 @@ class State
     
     static func sendNotificationToCircle()
     {
-        let headers: HTTPHeaders = [
-            "Authorization": "key=AIzaSyA-1cAHNGqjcpX8G8ybAUht1Cc08m2m6dg",
-            "Content-Type": "application/json"
-        ]
+        let message: String = "Granpa Joe is missing! Help me search!"
         
-        let parameters: Parameters =
-            [
-                "to" : "eX7jEHCS4Tw:APA91bGE6m-EdmCYUJSBzWI9T10wkj3T01oGclCc6FbuzhxJ0uf1FRRq5lQ-ra1kWO6GfySA4mp87KA4DTAWgdzHdxN8NMm07taRGXzcKu5jLNuxb8KFn9oSJe3G7EqsfTDCatElM492",
-                "data": [
-                    "Alert": "wake up!"
-                ]
-        ]
+        print(message)
         
-        // All three of these calls are equivalent
-        Alamofire.request("https://fcm.googleapis.com/fcm/send",
+        let parameters : [String : AnyObject] = [
+            "message"     : message as AnyObject,
+            ]
+        
+        
+        Alamofire.request("http://104.36.149.204/alertpush.php",
                           method: .post,
-                          parameters: parameters,
-                          encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
+                          parameters: parameters).response
             {
                 (response) in
                 
-                if let requestBody = response.request?.httpBody
+                if let error = response.error as? NSError
                 {
-                    do {
-                        let jsonArray = try JSONSerialization.jsonObject(with: requestBody, options: [])
-                        print("Array: \(jsonArray)")
-                    }
-                    catch {
-                        print("Error: \(error)")
-                    }
+                    print("Unresolved error \(error.userInfo)")
                 }
-                
-                print("A " + String(describing: response.request?.httpBody))
-                print("B " + String(describing: response.response))
-                print("C " + String(describing: response.data))
-                print("D " + String(describing: response.result))
         }
     }
     
