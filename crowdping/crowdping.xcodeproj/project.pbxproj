@@ -21,6 +21,8 @@
 		C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */; };
 		C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042E71D960C25000C5CAC /* crowdpingTests.swift */; };
 		C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042F21D960C25000C5CAC /* crowdpingUITests.swift */; };
+		C77E13921D97515600B79FC1 /* button alert_circles.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13901D97515600B79FC1 /* button alert_circles.pdf */; };
+		C77E13931D97515600B79FC1 /* button alert_police.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13911D97515600B79FC1 /* button alert_police.pdf */; };
 		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
 		C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D357AD1D971527001E7387 /* MapKit.framework */; };
 		C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */; };
@@ -70,6 +72,8 @@
 		C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crowdpingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042F21D960C25000C5CAC /* crowdpingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingUITests.swift; sourceTree = "<group>"; };
 		C71042F41D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C77E13901D97515600B79FC1 /* button alert_circles.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_circles.pdf"; path = "crowdping/images/button alert_circles.pdf"; sourceTree = "<group>"; };
+		C77E13911D97515600B79FC1 /* button alert_police.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_police.pdf"; path = "crowdping/images/button alert_police.pdf"; sourceTree = "<group>"; };
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		C71042C31D960C24000C5CAC = {
 			isa = PBXGroup;
 			children = (
+				C77E138F1D97514800B79FC1 /* images */,
 				C71042CE1D960C24000C5CAC /* crowdping */,
 				C71042E61D960C25000C5CAC /* crowdpingTests */,
 				C71042F11D960C25000C5CAC /* crowdpingUITests */,
@@ -176,6 +181,15 @@
 				C71042F41D960C25000C5CAC /* Info.plist */,
 			);
 			path = crowdpingUITests;
+			sourceTree = "<group>";
+		};
+		C77E138F1D97514800B79FC1 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C77E13901D97515600B79FC1 /* button alert_circles.pdf */,
+				C77E13911D97515600B79FC1 /* button alert_police.pdf */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		C7D357AC1D971527001E7387 /* Frameworks */ = {
@@ -266,6 +280,7 @@
 					C71042CB1D960C24000C5CAC = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = L9GR6R2227;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -282,12 +297,14 @@
 					C71042E21D960C25000C5CAC = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = L9GR6R2227;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C71042CB1D960C24000C5CAC;
 					};
 					C71042ED1D960C25000C5CAC = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = L9GR6R2227;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C71042CB1D960C24000C5CAC;
 					};
@@ -319,8 +336,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */,
+				C77E13921D97515600B79FC1 /* button alert_circles.pdf in Resources */,
 				8BEC45A51D9734490075612F /* GoogleService-Info.plist in Resources */,
 				C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */,
+				C77E13931D97515600B79FC1 /* button alert_police.pdf in Resources */,
 				C71042D51D960C24000C5CAC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

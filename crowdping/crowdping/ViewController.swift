@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import Contacts
+import Alamofire
 
 class ViewController: UIViewController, MKMapViewDelegate
 {
@@ -139,10 +140,60 @@ class ViewController: UIViewController, MKMapViewDelegate
     
     @IBAction func notifyCircle(_ sender: AnyObject)
     {
+        let alertController = UIAlertController(
+            title: "Notify Circle",
+            message: "Notify the members of your circle to help you find <person>?",
+            preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel)
+        {
+            (action) in
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(
+            title: "OK",
+            style: .default)
+        {
+            (action) in
+            self.sendNotificationToCircle()
+        }
+        alertController.addAction(OKAction)
+        
+        present(alertController, animated: true)
+        {
+        }
     }
     
     @IBAction func notifyPolice(_ sender: AnyObject)
     {
+        let alertController = UIAlertController(
+            title: "Call the Police",
+            message: "Call the police to help you find <person>?",
+            preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(
+            title: "Cancel",
+            style: .cancel)
+        {
+            (action) in
+        }
+        alertController.addAction(cancelAction)
+        
+        let OKAction = UIAlertAction(
+            title: "OK",
+            style: .default)
+        {
+            (action) in
+            self.callPolice()
+        }
+        alertController.addAction(OKAction)
+        
+        present(alertController, animated: true)
+        {
+        }
     }
     
     // MARK: internal
@@ -271,5 +322,47 @@ class ViewController: UIViewController, MKMapViewDelegate
         let hours    = (ti / 3600)
         
         timeView.text = String(format: "%0.2d:%0.2d", hours, minutes)
+    }
+    
+    func sendNotificationToCircle()
+    {
+        let headers: HTTPHeaders = [
+            "Authorization": "key=AIzaSyA-1cAHNGqjcpX8G8ybAUht1Cc08m2m6dg",
+            "Content-Type": "application/json"
+        ]
+        
+        let parameters: Parameters =
+        [
+            "to" : "/topics/crowdping",
+            "data": [
+                "Alert": "wake up!"
+            ]
+        ]
+        
+        // All three of these calls are equivalent
+        Alamofire.request("https://fcm.googleapis.com/fcm/send",
+                          method: .post,
+                          parameters: parameters,
+                          headers: headers).responseJSON
+            {
+                    (response) in
+                    print(response.request)  // original URL request
+                    print(response.response) // HTTP URL response
+                    print(response.data)     // server data
+                    print(response.result)   // result of response serialization            }
+            }
+        }
+    
+    func callPolice()
+    {
+        if let phoneCallURL = URL(string: "tel://778-822-8242")
+        {
+            let application = UIApplication.shared
+            
+            if application.canOpenURL(phoneCallURL)
+            {
+                application.openURL(phoneCallURL)
+            }
+        }
     }
 }
