@@ -210,6 +210,12 @@ class RangeViewController: UIViewController
         
         rssiValues.append(rssi * -1)
         
+        if rssiValues.count < 5
+        {
+            imageView.backgroundColor = .green
+            return
+        }
+        
         if rssiValues.count > 5
         {
             rssiValues.remove(at: 0)
