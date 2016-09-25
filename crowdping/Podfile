@@ -8,9 +8,6 @@ target 'crowdping' do
   # Pods for crowdping
 
   #Pods from Google Firebase Cloud Messaging
-  pod 'Firebase'
-  pod 'Firebase/Core'
-  pod 'Firebase/Messaging'
   pod 'Alamofire', '~> 4.0'
 
   target 'crowdpingTests' do
