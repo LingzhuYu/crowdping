@@ -30,30 +30,30 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
-                                <frame key="frameInset" minX="16" minY="579" width="51" height="31"/>
+                                <frame key="frameInset" minX="53" minY="579" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="notifySwitchChanged:" destination="mgv-zU-Lnq" eventType="valueChanged" id="qDd-qV-oDi"/>
                                 </connections>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-yh-JL9">
-                                <frame key="frameInset" minX="271" minY="580" width="42" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-yh-JL9">
+                                <frame key="frameInset" minX="237" minY="549" width="122" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Police"/>
+                                <state key="normal" image="PoliceImage"/>
                                 <connections>
                                     <action selector="notifyPolice:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="Y13-lU-RMM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-q8-IP3">
-                                <frame key="frameInset" minX="167" minY="580" width="40" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-q8-IP3">
+                                <frame key="frameInset" minX="154" minY="570" width="67" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Circle"/>
+                                <state key="normal" image="CircleButton"/>
                                 <connections>
                                     <action selector="notifyCircle:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="WMx-bo-kLZ"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.23529411764705882" green="0.39215686274509803" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="circleButton" destination="Wuu-q8-IP3" id="SYN-io-1zz"/>
@@ -68,4 +68,8 @@
             <point key="canvasLocation" x="-642.39999999999998" y="-59.820089955022496"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CircleButton" width="95" height="70"/>
+        <image name="PoliceImage" width="73" height="70"/>
+    </resources>
 </document>
