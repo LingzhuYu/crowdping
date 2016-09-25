@@ -21,12 +21,15 @@ class RangeViewController: UIViewController
     var locationUpdatedObserver : AnyObject?
     
     @IBOutlet weak var timeView: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var notifySwitch: UISwitch!
     @IBOutlet weak var circleButton: UIButton!
     @IBOutlet weak var policeButton: UIButton!
     
     fileprivate var rssiValues : [Int] = []
     fileprivate var rssiAverage = Int.min
+    fileprivate let maxRSSI = 70
+    fileprivate let minRSSI = 50
     
     override func viewDidLoad()
     {
@@ -231,6 +234,40 @@ class RangeViewController: UIViewController
         }
         
         rssiAverage = average
+
+        // realAverage = 60
+        // maxRSSI = 80
+        // minRSSI = 30
+        
+        let distance = Int((Float(rssiAverage - minRSSI) / Float(maxRSSI - minRSSI)) * 100)
+        
+        if(distance > 80)
+        {
+            imageView.backgroundColor = .green
+        }
+        else if(distance > 70)
+        {
+            imageView.backgroundColor = .yellow
+        }
+        else
+        {
+            imageView.backgroundColor = .red
+        }
+        
+        // imageView.image = UIImage(named: "CircleButton")
+    }
+    
+    fileprivate func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage!
+    {
+        let scale     = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
     
     fileprivate func beaconNotNearby(_ location: CLLocation!)

@@ -150,6 +150,7 @@
                     </view>
                     <connections>
                         <outlet property="circleButton" destination="aWx-gP-J63" id="cfY-8f-PeW"/>
+                        <outlet property="imageView" destination="ohQ-ld-oiM" id="o2z-3D-hvL"/>
                         <outlet property="notifySwitch" destination="KI9-ob-g30" id="eWv-8W-Z42"/>
                         <outlet property="policeButton" destination="WxU-qO-J7P" id="9Xa-CW-7fT"/>
                         <outlet property="timeView" destination="uhH-Zp-hw7" id="z6v-vI-Y59"/>

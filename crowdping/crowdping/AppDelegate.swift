@@ -12,6 +12,7 @@ import AudioToolbox
 import CoreLocation
 import CoreBluetooth
 import UserNotifications
+import Alamofire
 
 extension Data {
     func hexString() -> String {
@@ -46,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var currentLocation : CLLocation? = nil
     var isInRange = false
     var foo = false
+    let APIKey = "7NxSEeut--6JUnTVlcldQ-ZqUo9oM9-6"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -240,7 +242,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print("didUpdateLocations")
         
         currentLocation = locations.last!
-        print("GPS \(currentLocation!.coordinate)")
+        postLocation(currentLocation)
         Notifications.postLocationUpdated(self, location: currentLocation)
     }
     
@@ -489,6 +491,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             }
             
             rangedRegions.removeAll()
+        }
+    }
+    
+    fileprivate func postLocation(_ currentLocation : CLLocation!)
+    {
+        let parameters : [String : AnyObject] = [
+            "major"     : desiredMajor! as AnyObject,
+            "minor"     : desiredMinor! as AnyObject,
+            "latitude"  : currentLocation.coordinate.latitude as AnyObject,
+            "longitude" : currentLocation.coordinate.longitude as AnyObject,
+        ]
+        
+        post(parameters)
+    }
+    
+    fileprivate func post(_ parameters: [String : AnyObject]!)
+    {
+        // log.debug("enter")
+        
+        var newParameters = parameters
+        
+        newParameters?["whence"] = Int(Date().timeIntervalSince1970) as AnyObject?
+        
+        print(newParameters)
+        
+        Alamofire.request("https://api.mlab.com/api/1/databases/crowdping/collections/locations/?apiKey=\(APIKey)",
+            method: .post,
+            parameters: newParameters,
+            encoding: JSONEncoding.default).responseJSON
+            {
+                (response) in
+
+                if let error = response.result.error as? NSError
+                {
+                    print("Unresolved error \(error.userInfo)")
+                }
         }
     }
 }

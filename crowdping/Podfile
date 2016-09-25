@@ -9,6 +9,7 @@ target 'crowdping' do
 
   #Pods from Google Firebase Cloud Messaging
   pod 'Alamofire', '~> 4.0'
+  pod 'SwiftyJSON', :git => 'https://github.com/acegreen/SwiftyJSON.git', :branch => 'swift3'
 
   target 'crowdpingTests' do
     inherit! :search_paths
