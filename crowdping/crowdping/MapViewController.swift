@@ -166,6 +166,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
             State.timer?.invalidate()
             State.timer = nil
             State.startTime = nil
+            State.sendFoundNotificationToCircle()
         }
         
         State.isSearching      = notifySwitch.isOn
@@ -193,7 +194,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
             style: .default)
         {
             (action) in
-            State.sendNotificationToCircle()
+            State.sendLostNotificationToCircle()
         }
         alertController.addAction(CircleAction)
         

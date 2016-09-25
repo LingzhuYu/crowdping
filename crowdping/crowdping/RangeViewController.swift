@@ -136,6 +136,7 @@ class RangeViewController: UIViewController
             State.timer?.invalidate()
             State.timer = nil
             State.startTime = nil
+            State.sendFoundNotificationToCircle()
         }
         
         State.isSearching      = notifySwitch.isOn
@@ -163,7 +164,7 @@ class RangeViewController: UIViewController
             style: .default)
         {
             (action) in
-            State.sendNotificationToCircle()
+            State.sendLostNotificationToCircle()
         }
         alertController.addAction(OKAction)
         

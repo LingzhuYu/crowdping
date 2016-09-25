@@ -21,7 +21,7 @@ extension Data {
             token += String(format: "%02.2hhx", self[i] as CVarArg)
         }
         
-        print(token)
+        print("token = \(token)")
         
         return "\(token)"
     }
@@ -51,8 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        print("didFinishLaunchingWithOptions")
-        
         // Notifications configuration
         
         let notificationSettings = UIUserNotificationSettings(
@@ -78,7 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         if #available(iOS 9.0, *)
         {
-            print("allowsBackgroundLocationUpdates")
             locationManager.allowsBackgroundLocationUpdates = true
         }
         
@@ -319,6 +316,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             if !isInRange || (!foo && foundBeacon?.rssi != 0)
             {
                 isInRange = true
+                State.sendLocatedNotificationToCircle()
                 Notifications.postBeaconNearby(self, location: currentLocation)
             }
         }

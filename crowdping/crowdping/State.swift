@@ -18,10 +18,8 @@ class State
     static var timer : Timer?
     static var beaconFound = false
     
-    static func sendNotificationToCircle()
+    fileprivate static func sendNotificationToCircle(_ message: String!)
     {
-        let message: String = "Granpa Joe is missing! Help me search!"
-        
         print(message)
         
         let parameters : [String : AnyObject] = [
@@ -40,6 +38,27 @@ class State
                     print("Unresolved error \(error.userInfo)")
                 }
         }
+    }
+    
+    static func sendLostNotificationToCircle()
+    {
+        let message: String = "Grandpa Joe is missing! Help me search!"
+        
+        sendNotificationToCircle(message)
+    }
+    
+    static func sendLocatedNotificationToCircle()
+    {
+        let message: String = "Grandpa Joe has been located. Please come to my location and search"
+        
+        sendNotificationToCircle(message)
+    }
+    
+    static func sendFoundNotificationToCircle()
+    {
+        let message: String = "Grandpa Joe has been found. Thanks for helping!"
+        
+        sendNotificationToCircle(message)
     }
     
     static func callPolice()
