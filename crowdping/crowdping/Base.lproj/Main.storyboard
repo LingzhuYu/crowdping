@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--main-->
+        <!--map-->
         <scene sceneID="yai-Sv-uux">
             <objects>
-                <viewController storyboardIdentifier="main" title="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mgv-zU-Lnq" customClass="ViewController" customModule="crowdping" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="map" title="map" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mgv-zU-Lnq" customClass="MapViewController" customModule="crowdping" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="W0e-ti-yJ2"/>
                         <viewControllerLayoutGuide type="bottom" id="GxT-Pe-iS9"/>
@@ -40,12 +40,12 @@
                                     <action selector="notifyCircle:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="WMx-bo-kLZ"/>
                                 </connections>
                             </button>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="CircleButton" offImage="PoliceImage" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="121-Tx-DD2"/>
                                     <constraint firstAttribute="width" constant="49" id="T1K-QL-kMZ"/>
                                 </constraints>
-                                <color key="tintColor" red="1" green="0.0" blue="0.16443011569999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.02068199607" green="1" blue="0.93090851990000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="notifySwitchChanged:" destination="mgv-zU-Lnq" eventType="valueChanged" id="qDd-qV-oDi"/>
                                 </connections>
@@ -82,11 +82,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gr-Ar-MSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-642.39999999999998" y="-59.820089955022496"/>
+            <point key="canvasLocation" x="-319" y="-423"/>
+        </scene>
+        <!--range-->
+        <scene sceneID="9iZ-8O-XHQ">
+            <objects>
+                <viewController storyboardIdentifier="range" title="range" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0u9-Dd-NEV" customClass="RangeViewController" customModule="crowdping" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UPA-3v-pCL"/>
+                        <viewControllerLayoutGuide type="bottom" id="kCc-je-LKs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BSJ-kh-cJo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhH-Zp-hw7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="jB3-pI-YRS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxU-qO-J7P">
+                                <state key="normal" image="PoliceImage"/>
+                                <connections>
+                                    <action selector="notifyPolice:" destination="0u9-Dd-NEV" eventType="touchUpInside" id="noy-NB-eRJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aWx-gP-J63">
+                                <state key="normal" image="CircleButton"/>
+                                <connections>
+                                    <action selector="notifyCircle:" destination="0u9-Dd-NEV" eventType="touchUpInside" id="mcj-LG-dW8"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="CircleButton" offImage="PoliceImage" translatesAutoresizingMaskIntoConstraints="NO" id="KI9-ob-g30">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="BT0-i5-Enx"/>
+                                    <constraint firstAttribute="width" constant="49" id="fNw-aT-Vcb"/>
+                                </constraints>
+                                <color key="onTintColor" red="0.02068199607" green="1" blue="0.93090851990000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="notifySwitchChanged:" destination="0u9-Dd-NEV" eventType="valueChanged" id="WmQ-Vn-Jv6"/>
+                                </connections>
+                            </switch>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ohQ-ld-oiM">
+                                <frame key="frameInset" minY="77" width="375" height="492"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.23529411759999999" green="0.3921568627" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="aWx-gP-J63" firstAttribute="leading" secondItem="KI9-ob-g30" secondAttribute="trailing" constant="83" id="2RY-8l-QRG"/>
+                            <constraint firstItem="aWx-gP-J63" firstAttribute="bottom" secondItem="WxU-qO-J7P" secondAttribute="bottom" id="2UN-Jj-MHX"/>
+                            <constraint firstItem="WxU-qO-J7P" firstAttribute="leading" secondItem="aWx-gP-J63" secondAttribute="trailing" constant="67" id="4sI-Ft-684"/>
+                            <constraint firstItem="kCc-je-LKs" firstAttribute="top" secondItem="KI9-ob-g30" secondAttribute="bottom" constant="30" id="4xj-Nj-QjW"/>
+                            <constraint firstItem="kCc-je-LKs" firstAttribute="top" secondItem="aWx-gP-J63" secondAttribute="bottom" constant="10" id="C4Z-Hd-uyo"/>
+                            <constraint firstItem="uhH-Zp-hw7" firstAttribute="top" secondItem="UPA-3v-pCL" secondAttribute="bottom" id="H8d-ku-LzA"/>
+                            <constraint firstItem="KI9-ob-g30" firstAttribute="leading" secondItem="BSJ-kh-cJo" secondAttribute="leadingMargin" id="Ix9-A8-1Mh"/>
+                            <constraint firstItem="uhH-Zp-hw7" firstAttribute="trailing" secondItem="WxU-qO-J7P" secondAttribute="trailing" id="OOd-26-OiI"/>
+                            <constraint firstItem="KI9-ob-g30" firstAttribute="centerY" secondItem="aWx-gP-J63" secondAttribute="centerY" id="V82-8L-LSw"/>
+                            <constraint firstItem="uhH-Zp-hw7" firstAttribute="centerX" secondItem="aWx-gP-J63" secondAttribute="centerX" id="Z95-n7-KaA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uhH-Zp-hw7" secondAttribute="trailing" constant="4" id="Zb2-ba-1sh"/>
+                            <constraint firstItem="uhH-Zp-hw7" firstAttribute="leading" secondItem="BSJ-kh-cJo" secondAttribute="leadingMargin" constant="-4" id="dtH-zF-Mu3"/>
+                            <constraint firstItem="aWx-gP-J63" firstAttribute="top" secondItem="WxU-qO-J7P" secondAttribute="top" id="zNj-w9-nxY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="circleButton" destination="aWx-gP-J63" id="cfY-8f-PeW"/>
+                        <outlet property="notifySwitch" destination="KI9-ob-g30" id="eWv-8W-Z42"/>
+                        <outlet property="policeButton" destination="WxU-qO-J7P" id="9Xa-CW-7fT"/>
+                        <outlet property="timeView" destination="uhH-Zp-hw7" id="z6v-vI-Y59"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Jj-kS-Qhn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="391" y="-423"/>
         </scene>
     </scenes>
     <resources>
-        <image name="CircleButton" width="95" height="95"/>
+        <image name="CircleButton" width="95" height="70"/>
         <image name="PoliceImage" width="95" height="95"/>
     </resources>
 </document>

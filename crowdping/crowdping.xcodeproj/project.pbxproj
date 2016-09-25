@@ -14,7 +14,7 @@
 		8BEC45A91D9734630075612F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BEC45A81D9734630075612F /* GoogleService-Info.plist */; };
 		B758B1A87F9693C13C37DBDA /* Pods_crowdpingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D0EE376AA6C1A76CDB03D74 /* Pods_crowdpingUITests.framework */; };
 		C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042CF1D960C24000C5CAC /* AppDelegate.swift */; };
-		C71042D21D960C24000C5CAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042D11D960C24000C5CAC /* ViewController.swift */; };
+		C71042D21D960C24000C5CAC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042D11D960C24000C5CAC /* MapViewController.swift */; };
 		C71042D51D960C24000C5CAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042D31D960C24000C5CAC /* Main.storyboard */; };
 		C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C71042D61D960C25000C5CAC /* crowdping.xcdatamodeld */; };
 		C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C71042D91D960C25000C5CAC /* Assets.xcassets */; };
@@ -40,6 +40,8 @@
 		C77E13B61D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13A51D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png */; };
 		C77E13BD1D97707F00B79FC1 /* button alert police.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13BB1D97707F00B79FC1 /* button alert police.pdf */; };
 		C77E13C01D9770BF00B79FC1 /* button alert_circles.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */; };
+		C77E13C21D977C5400B79FC1 /* RangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E13C11D977C5400B79FC1 /* RangeViewController.swift */; };
+		C77E13C41D9783F900B79FC1 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E13C31D9783F900B79FC1 /* State.swift */; };
 		C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AA1D96CCB0001E7387 /* Notifications.swift */; };
 		C7D357AE1D971527001E7387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7D357AD1D971527001E7387 /* MapKit.framework */; };
 		C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */; };
@@ -77,7 +79,7 @@
 		AD4A8963B5608CF533A7F899 /* Pods_crowdping.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_crowdping.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042CC1D960C24000C5CAC /* crowdping.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crowdping.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042CF1D960C24000C5CAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C71042D11D960C24000C5CAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C71042D11D960C24000C5CAC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C71042D41D960C24000C5CAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C71042D71D960C25000C5CAC /* crowdping.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = crowdping.xcdatamodel; sourceTree = "<group>"; };
 		C71042D91D960C25000C5CAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,8 @@
 		C77E13A51D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-83.5x83.5@2x.png"; path = "crowdping/icons/Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
 		C77E13BB1D97707F00B79FC1 /* button alert police.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert police.pdf"; path = "crowdping/images/button alert police.pdf"; sourceTree = "<group>"; };
 		C77E13BF1D9770BF00B79FC1 /* button alert_circles.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_circles.pdf"; path = "crowdping/images/button alert_circles.pdf"; sourceTree = "<group>"; };
+		C77E13C11D977C5400B79FC1 /* RangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeViewController.swift; sourceTree = "<group>"; };
+		C77E13C31D9783F900B79FC1 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		C7D357AA1D96CCB0001E7387 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		C7D357AD1D971527001E7387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnotation.swift; sourceTree = "<group>"; };
@@ -187,13 +191,15 @@
 				8BEC45A41D9734490075612F /* GoogleService-Info.plist */,
 				C7D357AA1D96CCB0001E7387 /* Notifications.swift */,
 				C71042CF1D960C24000C5CAC /* AppDelegate.swift */,
-				C71042D11D960C24000C5CAC /* ViewController.swift */,
+				C71042D11D960C24000C5CAC /* MapViewController.swift */,
+				C77E13C11D977C5400B79FC1 /* RangeViewController.swift */,
 				C7D357AF1D971EBD001E7387 /* LocationAnotation.swift */,
 				C71042D31D960C24000C5CAC /* Main.storyboard */,
 				C71042D91D960C25000C5CAC /* Assets.xcassets */,
 				C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */,
 				C71042DE1D960C25000C5CAC /* Info.plist */,
 				C71042D61D960C25000C5CAC /* crowdping.xcdatamodeld */,
+				C77E13C31D9783F900B79FC1 /* State.swift */,
 			);
 			path = crowdping;
 			sourceTree = "<group>";
@@ -230,21 +236,21 @@
 		C77E13941D9756DB00B79FC1 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				C77E13A01D9756E700B79FC1 /* Icon-App-20x20@1x.png */,
 				C77E13951D9756E700B79FC1 /* Icon-App-20x20@2x.png */,
 				C77E13961D9756E700B79FC1 /* Icon-App-20x20@3x.png */,
 				C77E13971D9756E700B79FC1 /* Icon-App-29x29@1x.png */,
 				C77E13981D9756E700B79FC1 /* Icon-App-29x29@2x.png */,
 				C77E13991D9756E700B79FC1 /* Icon-App-29x29@3x.png */,
 				C77E139A1D9756E700B79FC1 /* Icon-App-40x40@1x.png */,
+				C77E13A11D9756E700B79FC1 /* Icon-App-40x40@2x.png */,
 				C77E139B1D9756E700B79FC1 /* Icon-App-40x40@3x.png */,
 				C77E139C1D9756E700B79FC1 /* Icon-App-57x57@1x.png */,
+				C77E13A21D9756E700B79FC1 /* Icon-App-60x60@1x.png */,
+				C77E13A31D9756E700B79FC1 /* Icon-App-60x60@2x.png */,
 				C77E139D1D9756E700B79FC1 /* Icon-App-60x60@3x.png */,
 				C77E139E1D9756E700B79FC1 /* Icon-App-76x76@1x.png */,
 				C77E139F1D9756E700B79FC1 /* Icon-App-76x76@2x.png */,
-				C77E13A01D9756E700B79FC1 /* Icon-App-20x20@1x.png */,
-				C77E13A11D9756E700B79FC1 /* Icon-App-40x40@2x.png */,
-				C77E13A21D9756E700B79FC1 /* Icon-App-60x60@1x.png */,
-				C77E13A31D9756E700B79FC1 /* Icon-App-60x60@2x.png */,
 				C77E13A41D9756E700B79FC1 /* Icon-App-76x76@3x.png */,
 				C77E13A51D9756E700B79FC1 /* Icon-App-83.5x83.5@2x.png */,
 			);
@@ -567,9 +573,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D357AB1D96CCB0001E7387 /* Notifications.swift in Sources */,
-				C71042D21D960C24000C5CAC /* ViewController.swift in Sources */,
+				C71042D21D960C24000C5CAC /* MapViewController.swift in Sources */,
+				C77E13C21D977C5400B79FC1 /* RangeViewController.swift in Sources */,
 				C7D357B01D971EBD001E7387 /* LocationAnotation.swift in Sources */,
 				C71042D01D960C24000C5CAC /* AppDelegate.swift in Sources */,
+				C77E13C41D9783F900B79FC1 /* State.swift in Sources */,
 				C71042D81D960C25000C5CAC /* crowdping.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

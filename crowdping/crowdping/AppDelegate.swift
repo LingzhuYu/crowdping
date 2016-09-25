@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var desiredMinor : Int? = nil
     var currentLocation : CLLocation? = nil
     var isInRange = false
+    var foo = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -335,7 +336,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                    minor == desiredMinor
         })
         {
-            if !isInRange
+            if !isInRange || (!foo && foundBeacon?.rssi != 0)
             {
                 isInRange = true
                 Notifications.postBeaconNearby(self, location: currentLocation)
@@ -346,17 +347,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             isInRange = false
             Notifications.postBeaconNotNearby(self, location: currentLocation)
         }
+        
+        print("isInRange \(isInRange)")
 
         if isInRange
         {
-            print("\(foundBeacon?.rssi)")
+            print("foundBeacon.rssi \(foundBeacon?.rssi)")
             
             if foundBeacon?.rssi == 0
             {
-                Notifications.postBeaconNotRanged(self)
+                if foo
+                {
+                    foo = false
+                    Notifications.postBeaconNotRanged(self)
+                }
             }
             else
             {
+                foo = true
                 Notifications.postBeaconRanged(self, rssi: foundBeacon!.rssi, location: currentLocation)
             }
         }

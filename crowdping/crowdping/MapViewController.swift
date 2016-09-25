@@ -10,9 +10,8 @@ import UIKit
 import CoreLocation
 import MapKit
 import Contacts
-import Alamofire
 
-class ViewController: UIViewController, MKMapViewDelegate
+class MapViewController: UIViewController, MKMapViewDelegate
 {
     @IBOutlet weak var notifyCircle: UIButton!
     let notificationCentre = NotificationCenter.default
@@ -25,12 +24,9 @@ class ViewController: UIViewController, MKMapViewDelegate
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var notifySwitch: UISwitch!
-    @IBOutlet weak var policeButton: UIButton!
     @IBOutlet weak var circleButton: UIButton!
-    fileprivate var beaconFound = false
+    @IBOutlet weak var policeButton: UIButton!
     fileprivate var annotations : [MKAnnotation] = []
-    fileprivate var timer : Timer?
-    fileprivate var startTime : NSDate?
     
     override func viewDidLoad()
     {
@@ -104,12 +100,45 @@ class ViewController: UIViewController, MKMapViewDelegate
         mapView.delegate          = self
         mapView.showsUserLocation = true
         mapView.showsScale        = true
+        
+        if State.isSearching
+        {
+            updateTime()
+        }
     }
-
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        notifySwitch.isOn      = State.isSearching
+        circleButton.isEnabled = State.isSearching
+        policeButton.isEnabled = State.isSearching
+        
+        if State.isSearching
+        {
+            State.timer = Timer.scheduledTimer(timeInterval: 1,
+                                               target: self,
+                                               selector: #selector(updateTime),
+                                               userInfo: nil,
+                                               repeats: true)
+            updateTime()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        Notifications.removeObserver(beaconNearbyObserver,    from: notificationCentre)
+        Notifications.removeObserver(beaconNotNearbyObserver, from: notificationCentre)
+        Notifications.removeObserver(beaconRangedObserver,    from: notificationCentre)
+        Notifications.removeObserver(beaconNotRangedObserver, from: notificationCentre)
+        Notifications.removeObserver(locationUpdatedObserver, from: notificationCentre)
     }
 
     @IBAction func notifySwitchChanged(_ sender: AnyObject)
@@ -118,22 +147,23 @@ class ViewController: UIViewController, MKMapViewDelegate
         {
             Notifications.postStartLocationMonitoring(self)
             Notifications.postStartBeaconMonitoring(self)
-            timer = Timer.scheduledTimer(timeInterval: 1,
+            State.timer = Timer.scheduledTimer(timeInterval: 1,
                                      target: self,
-                                     selector: #selector(ViewController.updateTime),
+                                     selector: #selector(updateTime),
                                      userInfo: nil,
                                      repeats: true)
-            startTime = NSDate()
+            State.startTime = NSDate()
         }
         else
         {
             Notifications.postStopLocationMonitoring(self)
             Notifications.postStopBeaconMonitoring(self)
-            timer?.invalidate()
-            timer = nil
-            startTime = nil
+            State.timer?.invalidate()
+            State.timer = nil
+            State.startTime = nil
         }
         
+        State.isSearching      = notifySwitch.isOn
         circleButton.isEnabled = notifySwitch.isOn
         policeButton.isEnabled = notifySwitch.isOn
     }
@@ -158,7 +188,7 @@ class ViewController: UIViewController, MKMapViewDelegate
             style: .default)
         {
             (action) in
-            self.sendNotificationToCircle()
+            State.sendNotificationToCircle()
         }
         alertController.addAction(OKAction)
         
@@ -187,7 +217,7 @@ class ViewController: UIViewController, MKMapViewDelegate
             style: .default)
         {
             (action) in
-            self.callPolice()
+            State.callPolice()
         }
         alertController.addAction(OKAction)
         
@@ -202,6 +232,9 @@ class ViewController: UIViewController, MKMapViewDelegate
     {
         print("beaconNearby \(location)")
         addLocation(location, found: true)
+        
+        let rangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "range") as! RangeViewController
+        self.present(rangeViewController, animated: false)
     }
     
     fileprivate func beaconNotNearby(_ location: CLLocation!)
@@ -213,22 +246,22 @@ class ViewController: UIViewController, MKMapViewDelegate
     fileprivate func beaconRanged(_ rssi: Int)
     {
         print("beaconRanged \(rssi)")
-        beaconFound = true
+        State.beaconFound = true
     }
     
     fileprivate func beaconNotRanged()
     {
         print("beaconNotRanged")
-        beaconFound = false
+        State.beaconFound = false
     }
     
     fileprivate func locationUpdated(_ location: CLLocation!)
     {
         print("locationUpdated \(location)")
         
-        addLocation(location, found: beaconFound)
+        addLocation(location, found: State.beaconFound)
         
-        if beaconFound
+        if State.beaconFound
         {
         }
         else
@@ -316,7 +349,7 @@ class ViewController: UIViewController, MKMapViewDelegate
     
     func updateTime()
     {
-        let interval = startTime!.timeIntervalSinceNow * -1
+        let interval = State.startTime!.timeIntervalSinceNow * -1
         let ti       = Int(interval)
         let seconds  = (ti % 60)
         let minutes  = (ti / 60) % 60
@@ -333,60 +366,5 @@ class ViewController: UIViewController, MKMapViewDelegate
         }
         
         timeView.text = str
-    }
-    
-    func sendNotificationToCircle()
-    {
-        let headers: HTTPHeaders = [
-            "Authorization": "key=AIzaSyA-1cAHNGqjcpX8G8ybAUht1Cc08m2m6dg",
-            "Content-Type": "application/json"
-        ]
-        
-        let parameters: Parameters =
-        [
-            "to" : "eX7jEHCS4Tw:APA91bGE6m-EdmCYUJSBzWI9T10wkj3T01oGclCc6FbuzhxJ0uf1FRRq5lQ-ra1kWO6GfySA4mp87KA4DTAWgdzHdxN8NMm07taRGXzcKu5jLNuxb8KFn9oSJe3G7EqsfTDCatElM492",
-            "data": [
-                "Alert": "wake up!"
-            ]
-        ]
-        
-        // All three of these calls are equivalent
-        Alamofire.request("https://fcm.googleapis.com/fcm/send",
-                          method: .post,
-                          parameters: parameters,
-                          encoding: JSONEncoding.default,
-                          headers: headers).responseJSON
-            {
-                (response) in
-                
-                if let requestBody = response.request?.httpBody
-                {
-                    do {
-                        let jsonArray = try JSONSerialization.jsonObject(with: requestBody, options: [])
-                        print("Array: \(jsonArray)")
-                    }
-                    catch {
-                        print("Error: \(error)")
-                    }
-                }
-                
-                print("A " + String(describing: response.request?.httpBody))
-                print("B " + String(describing: response.response))
-                print("C " + String(describing: response.data))
-                print("D " + String(describing: response.result))
-            }
-        }
-    
-    func callPolice()
-    {
-        if let phoneCallURL = URL(string: "tel://778-822-8242")
-        {
-            let application = UIApplication.shared
-            
-            if application.canOpenURL(phoneCallURL)
-            {
-                application.openURL(phoneCallURL)
-            }
-        }
     }
 }
