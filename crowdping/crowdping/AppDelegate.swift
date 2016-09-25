@@ -115,10 +115,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any])
     {
-        let info    = userInfo["aps"] as! [String: AnyObject]
-        let message = info["alert"] as? String
+        if !(State.iSentTheMessage)
+        {
+            let info    = userInfo["aps"] as! [String: AnyObject]
+            let message = info["alert"] as? String
         
-        Notifications.postMessage(self, message: message)
+            Notifications.postMessage(self, message: message)
+        }
+        
+        State.iSentTheMessage = false
     }
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)

@@ -17,13 +17,15 @@ class State
     static var isSearching : Bool = false
     static var timer : Timer?
     static var beaconFound = false
+    static var iSentTheMessage = false
     
     fileprivate static func sendNotificationToCircle(_ message: String!)
     {
         let parameters : [String : AnyObject] = [
             "message"     : message as AnyObject,
-            ]
+        ]
         
+        iSentTheMessage = true
         print("sending message to circle: \(parameters)")
         
         Alamofire.request("http://104.36.149.204/alertpush.php",
