@@ -125,6 +125,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                     print("[FCM] Unable to connect with FCM. \(error)")
                 } else {
                     print("[FCM] Connected to FCM.")
+                    
+                    FIRMessaging.messaging().subscribe(toTopic: "crowdping")
                 }
             }
         }
