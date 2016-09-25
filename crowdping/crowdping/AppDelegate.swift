@@ -14,6 +14,19 @@ import CoreBluetooth
 import Firebase
 import UserNotifications
 
+extension Data {
+    func hexString() -> String {
+        var token: String = ""
+        for i in 0..<self.count {
+            token += String(format: "%02.2hhx", self[i] as CVarArg)
+        }
+        
+        print(token)
+        
+        return "\(token)"
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate, CBPeripheralManagerDelegate
 {    
@@ -120,15 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if notificationSettings.types != .none {
             application.registerForRemoteNotifications()
             
-            FIRMessaging.messaging().connect { (error) in
-                if (error != nil) {
-                    print("[FCM] Unable to connect with FCM. \(error)")
-                } else {
-                    print("[FCM] Connected to FCM.")
-                    
-                    FIRMessaging.messaging().subscribe(toTopic: "/topics/crowdping")
-                }
-            }
+            connectToFirebase()
         }
     }
     
@@ -137,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("Registration successful with a device token")
+        print("Registration successful with a device token - \(deviceToken.hexString())")
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification)
@@ -186,6 +191,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Notifications.removeObserver(stopLocationMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(startBeaconMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(stopBeaconMonitoringObserver, from: notificationCentre)
+    }
+    
+    func connectToFirebase()
+    {
+        FIRMessaging.messaging().connect
+        { (error) in
+            if (error != nil)
+            {
+                print("[FCM] Unable to connect with FCM. \(error)")
+            }
+            else
+            {
+                let token = FIRInstanceID.instanceID().token()!
+                print("[FCM] Connected to FCM with FCMID - \(token)")
+            }
+        }
     }
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager)
