@@ -527,6 +527,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 {
                     print("Unresolved error \(error.userInfo)")
                 }
-        }
+            }   
     }
 }

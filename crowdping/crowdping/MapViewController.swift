@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import MapKit
 import Contacts
+import Alamofire
+import SwiftyJSON
 
 class MapViewController: UIViewController, MKMapViewDelegate
 {
@@ -27,7 +29,8 @@ class MapViewController: UIViewController, MKMapViewDelegate
     @IBOutlet weak var circleButton: UIButton!
     @IBOutlet weak var policeButton: UIButton!
     fileprivate var annotations : [MKAnnotation] = []
-    
+    let APIKey = "7NxSEeut--6JUnTVlcldQ-ZqUo9oM9-6"
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -153,6 +156,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
                                      userInfo: nil,
                                      repeats: true)
             State.startTime = NSDate()
+            getAnnotations()
         }
         else
         {
@@ -172,7 +176,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     {
         let alertController = UIAlertController(
             title: "Notify Circle",
-            message: "Notify the members of your circle to help you find <person>?",
+            message: "Notify the members of your circle to help you find Grandpa Joe?",
             preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(
@@ -201,7 +205,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     {
         let alertController = UIAlertController(
             title: "Call the Police",
-            message: "Call the police to help you find <person>?",
+            message: "Call the police to help you find Grandpa Joe?",
             preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(
@@ -281,8 +285,21 @@ class MapViewController: UIViewController, MKMapViewDelegate
         
         annotations.append(annotation)
         mapView.addAnnotations(annotations)
-        mapView.showAnnotations(annotations, animated: true)
-        mapView.camera.altitude *= 1.5
+        mapView.showAnnotations(annotations, animated: false)
+        mapView.camera.altitude *= 1.4
+        mapView.centerCoordinate = mapView.userLocation.coordinate
+    }
+
+    func addLocation(latitude : CLLocationDegrees, longitude: CLLocationDegrees, found : Bool)
+    {
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let annotation = LocationAnotation(coordinate, found: found)
+        
+        annotations.append(annotation)
+        mapView.addAnnotations(annotations)
+        mapView.showAnnotations(annotations, animated: false)
+        mapView.camera.altitude *= 1.4
+        mapView.centerCoordinate = mapView.userLocation.coordinate
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
@@ -366,5 +383,38 @@ class MapViewController: UIViewController, MKMapViewDelegate
         }
         
         timeView.text = str
+    }
+    
+    fileprivate func getAnnotations()
+    {
+        // log.debug("enter")
+        
+        let path = "https://api.mlab.com/api/1/databases/crowdping/collections/locations/?apiKey=\(APIKey)"
+        
+        Alamofire.request(path)
+            .responseJSON
+            {
+                (response) in
+                // log.debug("enter")
+                
+                if let _ = response.result.value
+                {
+                    let json = JSON(response.result.value!)
+                    
+                    for (_, subJSON) in json
+                    {
+                        let latitude  = subJSON["latitude"].floatValue
+                        let longitude = subJSON["longitude"].floatValue
+                        
+                        self.addLocation(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude), found: false)
+                    }
+                }
+                else if let error = response.result.error
+                {
+                    print(error)
+                }
+                
+                // log.debug("exit")
+        }
     }
 }

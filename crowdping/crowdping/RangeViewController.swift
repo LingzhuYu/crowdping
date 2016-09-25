@@ -147,7 +147,7 @@ class RangeViewController: UIViewController
     {
         let alertController = UIAlertController(
             title: "Notify Circle",
-            message: "Notify the members of your circle to help you find <person>?",
+            message: "Notify the members of your circle to help you find Grandpa Joe?",
             preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(
@@ -176,7 +176,7 @@ class RangeViewController: UIViewController
     {
         let alertController = UIAlertController(
             title: "Call the Police",
-            message: "Call the police to help you find <person>?",
+            message: "Call the police to help you find Grandpa Joe?",
             preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(
