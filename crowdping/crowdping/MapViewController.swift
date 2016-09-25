@@ -437,7 +437,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     {
         let alertController = UIAlertController(title: "Crowdping Alert", message: message, preferredStyle: .alert)
         
-        let OKAction = UIAlertAction(title: "Crowdping", style: .default, handler: nil)
+        let OKAction = UIAlertAction(title: "Close", style: .default, handler: nil)
         alertController.addAction(OKAction)
         present(alertController, animated: true)
     }
