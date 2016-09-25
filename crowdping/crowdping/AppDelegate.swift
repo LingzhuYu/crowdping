@@ -126,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 } else {
                     print("[FCM] Connected to FCM.")
                     
-                    FIRMessaging.messaging().subscribe(toTopic: "crowdping")
+                    FIRMessaging.messaging().subscribe(toTopic: "/topics/crowdping")
                 }
             }
         }
