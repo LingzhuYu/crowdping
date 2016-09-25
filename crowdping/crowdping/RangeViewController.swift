@@ -25,6 +25,9 @@ class RangeViewController: UIViewController
     @IBOutlet weak var circleButton: UIButton!
     @IBOutlet weak var policeButton: UIButton!
     
+    fileprivate var rssiValues : [Int] = []
+    fileprivate var rssiAverage = Int.min
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -197,23 +200,56 @@ class RangeViewController: UIViewController
     
     // MARK: internal
     
-    fileprivate func beaconNotNearby(_ location: CLLocation!)
-    {
-        print("beaconNotNearby \(location)")
-        let rangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "range") as! RangeViewController
-        self.present(rangeViewController, animated: false)
-    }
-    
     fileprivate func beaconRanged(_ rssi: Int)
     {
         print("beaconRanged \(rssi)")
         State.beaconFound = true
+        
+        rssiValues.append(rssi * -1)
+        
+        if rssiValues.count > 5
+        {
+            rssiValues.remove(at: 0)
+        }
+        
+        let sum = rssiValues.reduce(0, +)
+        let average = sum / rssiValues.count
+        
+        print("\(average) \(rssiAverage)")
+        
+        if average < rssiAverage
+        {
+            print("nearer")
+        }
+        else if average > rssiAverage
+        {
+            print("farther")
+        }
+        else
+        {
+            print("same")
+        }
+        
+        rssiAverage = average
+    }
+    
+    fileprivate func beaconNotNearby(_ location: CLLocation!)
+    {
+        print("beaconNotNearby \(location)")
+        returnToMap()
     }
     
     fileprivate func beaconNotRanged()
     {
         print("beaconNotRanged")
+        returnToMap()
+    }
+
+    func returnToMap()
+    {
         State.beaconFound = false
+        rssiValues = []
+        rssiAverage = Int.min
         let rangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "map") as! MapViewController
         self.present(rangeViewController, animated: false)
     }
