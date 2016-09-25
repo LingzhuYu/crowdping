@@ -21,8 +21,6 @@ extension Data {
             token += String(format: "%02.2hhx", self[i] as CVarArg)
         }
         
-        print("token = \(token)")
-        
         return "\(token)"
     }
 }
@@ -79,16 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             locationManager.allowsBackgroundLocationUpdates = true
         }
         
-        if #available(iOS 10.0, *)
-        {
-        }
-        else if #available(iOS 8.0, *)
-        {
-            
-            let settings = UIUserNotificationSettings(types: [ .alert, .badge, .sound ], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
         startLocationMonitoringObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.StartLocationMonitoring),
                                                                          object: nil,
                                                                          queue: nil)
@@ -124,6 +112,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         return true
     }
     
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any])
+    {
+        let info    = userInfo["aps"] as! [String: AnyObject]
+        let message = info["alert"] as? String
+        
+        Notifications.postMessage(self, message: message)
+    }
+    
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
     {
         if notificationSettings.types != .none {
@@ -141,8 +138,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification)
     {
-        print("******************************************************************")
-        
         if notification.soundName != nil
         {
             AudioServicesPlayAlertSound(kSystemSoundID_Vibrate)
@@ -152,23 +147,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        print("applicationWillResignActive")
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        print("applicationDidEnterBackground")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        print("applicationWillEnterForeground")
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("applicationDidBecomeActive")
     }
     
     func applicationWillTerminate(_ application: UIApplication)
@@ -189,17 +180,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager)
     {
-        print("locationManagerDidPauseLocationUpdates")
     }
     
     func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager)
     {
-        print("locationManagerDidResumeLocationUpdates")
     }
     
     func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit)
     {
-        print("didVisit")
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -209,35 +197,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion)
     {
-        print("didExitRegion \(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion)
     {
-        print("didEnterRegion \(region.identifier)")
     }
     
     func locationManagerShouldDisplayHeadingCalibration(_ manager: CLLocationManager) -> Bool
     {
-        print("locationManagerShouldDisplayHeadingCalibration")
-        
         return (false)
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion)
     {
-        print("didStartMonitoringFor \(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading)
     {
-        print("didUpdateHeading")
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
     {
-        print("didUpdateLocations")
-        
         currentLocation = locations.last!
         postLocation(currentLocation)
         Notifications.postLocationUpdated(self, location: currentLocation)
@@ -245,11 +225,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didFinishDeferredUpdatesWithError error: Error?)
     {
-        print("didFinishDeferredUpdatesWithError")
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
     {
+        /*
         let statusName : String!
         
         switch(status)
@@ -265,14 +245,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         case .restricted:
             statusName = "restricted"
         }
-        
-        print("didChangeAuthorization \(statusName!)")
+         
+         print(statusName)
+        */
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
     {
-        print("didDetermineState \(region.identifier)")
-        
         var previousState: CLRegionState?
         
         if state != previousState
@@ -282,13 +261,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             switch(state)
             {
             case .inside:
-                print("inside")
                 locationManager.startRangingBeacons(in: region as! CLBeaconRegion)
             case .outside:
-                print("outside")
                 locationManager.stopRangingBeacons(in: region as! CLBeaconRegion)
             case .unknown:
-                print("unknown")
                 break
             }
         }
@@ -296,8 +272,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
     {
-        print("didRangeBeacons \(beacons.count)")
-        
         let state = UIApplication.shared.applicationState
         var foundBeacon : CLBeacon? = nil
 
@@ -326,12 +300,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             Notifications.postBeaconNotNearby(self, location: currentLocation)
         }
         
-        print("isInRange \(isInRange)")
-
         if isInRange
         {
-            print("foundBeacon.rssi \(foundBeacon?.rssi)")
-            
             if foundBeacon?.rssi == 0
             {
                 if foo
@@ -365,6 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager)
     {
+        /*
         let stateName : String!
         
         switch(peripheral.state)
@@ -384,67 +355,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         
         print("peripheralManagerDidUpdateState \(stateName!)")
+         */
     }
     
     func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager)
     {
-        print("toUpdateSubscribers")
     }
     
     func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?)
     {
-        print("peripheralManagerDidStartAdvertising")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest)
     {
-        print("didReceiveRead")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, willRestoreState dict: [String : Any])
     {
-        print("willRestoreState")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?)
     {
-        print("didAdd")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest])
     {
-        print("didReceiveWrite")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic)
     {
-        print("didSubscribeTo")
     }
     
     func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic)
     {
-        print("didUnsubscribeFrom")
     }
     
     // MARK: internal
     
     fileprivate func startLocationMonitoring()
     {
-        print("startLocationMonitoring")
         locationManager.distanceFilter = 100
         locationManager.startUpdatingLocation()
     }
     
     fileprivate func stopLocationMonitoring()
     {
-        print("stopLocationMonitoring")
         locationManager.stopUpdatingLocation()
     }
     
     fileprivate func startBeaconMonitoring()
     {
-        print("startBeaconMonitoring")
-        
         if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)
         {
             if CLLocationManager.isRangingAvailable()
@@ -473,8 +433,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     fileprivate func stopBeaconMonitoring()
     {
-        print("stopBeaconMonitoring")
-        
         if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self)
         {
             if CLLocationManager.isRangingAvailable()
@@ -482,7 +440,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 rangedRegions.forEach(
                     {
                         (region) in
-                        print("Stopping monitoring for \(region.identifier)")
                         self.locationManager.stopRangingBeacons(in: region)
                         self.locationManager.stopMonitoring(for: region)
                     })
@@ -511,8 +468,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         var newParameters = parameters
         
         newParameters?["whence"] = Int(Date().timeIntervalSince1970) as AnyObject?
-        
-        print(newParameters)
         
         Alamofire.request("https://api.mlab.com/api/1/databases/crowdping/collections/locations/?apiKey=\(APIKey)",
             method: .post,

@@ -23,6 +23,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
     var beaconRangedObserver : AnyObject?
     var beaconNotRangedObserver : AnyObject?
     var locationUpdatedObserver : AnyObject?
+    var messageObserver : AnyObject?
     
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -42,7 +43,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
         {
             (note) in
             let location = Notifications.getLocation(note)
-            print("BeaconNearby received \(location)")
             
             if let location = location
             {
@@ -56,7 +56,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
         {
             (note) in
             let location = Notifications.getLocation(note)
-            print("BeaconNotNearby received \(location)")
             
             if let location = location
             {
@@ -70,7 +69,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
         {
             (note) in
             let rssi = Notifications.getRssi(note)
-            print("BeaconRanged received \(rssi)")
             
             if let rssi = rssi
             {
@@ -83,7 +81,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
                                                                  queue: nil)
         {
             (note) in
-            print("BeaconNotRanged received")
             self.beaconNotRanged()
         }
         
@@ -93,11 +90,23 @@ class MapViewController: UIViewController, MKMapViewDelegate
         {
             (note) in
             let location = Notifications.getLocation(note)
-            print("LocationUpdated received \(location)")
             
             if let location = location
             {
                 self.locationUpdated(location)
+            }
+        }
+        
+        messageObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.Message),
+                                                                 object: nil,
+                                                                 queue: nil)
+        {
+            (note) in
+            let message = Notifications.getMessage(note)
+            
+            if let message = message
+            {
+                self.showRemoteMessage(message)
             }
         }
         
@@ -143,6 +152,7 @@ class MapViewController: UIViewController, MKMapViewDelegate
         Notifications.removeObserver(beaconRangedObserver,    from: notificationCentre)
         Notifications.removeObserver(beaconNotRangedObserver, from: notificationCentre)
         Notifications.removeObserver(locationUpdatedObserver, from: notificationCentre)
+        Notifications.removeObserver(messageObserver,         from: notificationCentre)
     }
 
     @IBAction func notifySwitchChanged(_ sender: AnyObject)
@@ -245,7 +255,6 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     fileprivate func beaconNearby(_ location: CLLocation!)
     {
-        print("beaconNearby \(location)")
         addLocation(location, found: true)
         
         let rangeViewController = self.storyboard?.instantiateViewController(withIdentifier: "range") as! RangeViewController
@@ -254,26 +263,21 @@ class MapViewController: UIViewController, MKMapViewDelegate
     
     fileprivate func beaconNotNearby(_ location: CLLocation!)
     {
-        print("beaconNotNearby \(location)")
         addLocation(location, found: false)
     }
     
     fileprivate func beaconRanged(_ rssi: Int)
     {
-        print("beaconRanged \(rssi)")
         State.beaconFound = true
     }
     
     fileprivate func beaconNotRanged()
     {
-        print("beaconNotRanged")
         State.beaconFound = false
     }
     
     fileprivate func locationUpdated(_ location: CLLocation!)
     {
-        print("locationUpdated \(location)")
-        
         addLocation(location, found: State.beaconFound)
         
         if State.beaconFound
@@ -427,5 +431,14 @@ class MapViewController: UIViewController, MKMapViewDelegate
                 
                 // log.debug("exit")
         }
+    }
+    
+    func showRemoteMessage(_ message: String!)
+    {
+        let alertController = UIAlertController(title: "Crowdping Alert", message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "Crowdping", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
     }
 }

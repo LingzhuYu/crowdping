@@ -28,6 +28,7 @@ class Notifications
     static let BeaconRanged = "BeaconRanged"
     static let BeaconNotRanged = "BeaconNotRanged"
     static let LocationUpdated = "LocationUpdated"
+    static let Message = "Message"
     
     static func removeObserver(_ observer: AnyObject?, from: NotificationCenter!)
     {
@@ -82,15 +83,19 @@ class Notifications
         post(BeaconNotNearby, object: object, userInfo: userInfo)
     }
     
-    static func postBeaconRanged(_ object: AnyObject?, rssi : Int, location: CLLocation!)
+    static func postBeaconRanged(_ object: AnyObject?, rssi : Int, location: CLLocation?)
     {
-        let userInfo =
-            [
-                "rssi"     : rssi,
-                "location" : location
-            ] as [String : Any]
-        
-        post(BeaconRanged, object: object, userInfo: userInfo)
+        // BUG - why is location nil sometimes?
+        if let location = location
+        {
+            let userInfo =
+                [
+                    "rssi"     : rssi,
+                    "location" : location
+                ] as [String : Any]
+            
+            post(BeaconRanged, object: object, userInfo: userInfo)
+        }
     }
     
     static func postBeaconNotRanged(_ object: AnyObject?)
@@ -103,9 +108,19 @@ class Notifications
         let userInfo =
             [
                 "location" : location
-            ]
+        ]
         
         post(LocationUpdated, object: object, userInfo: userInfo)
+    }
+    
+    static func postMessage(_ object: AnyObject?, message: String!)
+    {
+        let userInfo =
+            [
+                "message" : message
+            ]
+        
+        post(Message, object: object, userInfo: userInfo)
     }
     
     static func getLocation(_ notification: Notification!) -> CLLocation?
@@ -120,5 +135,12 @@ class Notifications
         let rssi = notification.userInfo?["rssi"] as? Int
         
         return rssi
+    }
+    
+    static func getMessage(_ notification: Notification!) -> String?
+    {
+        let message = notification.userInfo?["message"] as? String
+        
+        return message
     }
 }

@@ -20,12 +20,11 @@ class State
     
     fileprivate static func sendNotificationToCircle(_ message: String!)
     {
-        print(message)
-        
         let parameters : [String : AnyObject] = [
             "message"     : message as AnyObject,
             ]
         
+        print("sending message to circle: \(parameters)")
         
         Alamofire.request("http://104.36.149.204/alertpush.php",
                           method: .post,
@@ -76,7 +75,6 @@ class State
     
     static func sendToSocial(_ view : UIViewController!)
     {
-        print("Social Sharing")
         let actionSheet = UIAlertController(title: "",
                                             message: "Share your Note",
                                             preferredStyle: .actionSheet)

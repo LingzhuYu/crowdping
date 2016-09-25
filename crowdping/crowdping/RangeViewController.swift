@@ -18,7 +18,7 @@ class RangeViewController: UIViewController
     var beaconNotNearbyObserver : AnyObject?
     var beaconRangedObserver : AnyObject?
     var beaconNotRangedObserver : AnyObject?
-    var locationUpdatedObserver : AnyObject?
+    var messageObserver : AnyObject?
     
     @IBOutlet weak var timeView: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -41,7 +41,6 @@ class RangeViewController: UIViewController
         {
             (note) in
             let location = Notifications.getLocation(note)
-            print("BeaconNotNearby received \(location)")
             
             if let location = location
             {
@@ -55,7 +54,6 @@ class RangeViewController: UIViewController
         {
             (note) in
             let rssi = Notifications.getRssi(note)
-            print("BeaconRanged received \(rssi)")
             
             if let rssi = rssi
             {
@@ -68,17 +66,20 @@ class RangeViewController: UIViewController
                                                                  queue: nil)
         {
             (note) in
-            print("BeaconNotRanged received")
             self.beaconNotRanged()
         }
         
-        locationUpdatedObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.LocationUpdated),
-                                                                 object: nil,
-                                                                 queue: nil)
+        messageObserver = notificationCentre.addObserver(forName: NSNotification.Name(rawValue: Notifications.Message),
+                                                         object: nil,
+                                                         queue: nil)
         {
             (note) in
-            let location = Notifications.getLocation(note)
-            print("LocationUpdated received \(location)")
+            let message = Notifications.getMessage(note)
+            
+            if let message = message
+            {
+                self.showRemoteMessage(message)
+            }
         }
     }
     
@@ -113,7 +114,7 @@ class RangeViewController: UIViewController
         Notifications.removeObserver(beaconNotNearbyObserver, from: notificationCentre)
         Notifications.removeObserver(beaconRangedObserver,    from: notificationCentre)
         Notifications.removeObserver(beaconNotRangedObserver, from: notificationCentre)
-        Notifications.removeObserver(locationUpdatedObserver, from: notificationCentre)
+        Notifications.removeObserver(messageObserver,         from: notificationCentre)
     }
     
     @IBAction func notifySwitchChanged(_ sender: AnyObject)
@@ -144,6 +145,7 @@ class RangeViewController: UIViewController
         policeButton.isEnabled = notifySwitch.isOn
     }
     
+    // Need to not duplicate the whole UI - the social sharing stuff isn't here...
     @IBAction func notifyCircle(_ sender: AnyObject)
     {
         let alertController = UIAlertController(
@@ -206,7 +208,6 @@ class RangeViewController: UIViewController
     
     fileprivate func beaconRanged(_ rssi: Int)
     {
-        print("beaconRanged \(rssi)")
         State.beaconFound = true
         
         rssiValues.append(rssi * -1)
@@ -224,8 +225,6 @@ class RangeViewController: UIViewController
         
         let sum = rssiValues.reduce(0, +)
         let average = sum / rssiValues.count
-        
-        print("\(average) \(rssiAverage)")
         
         if average < rssiAverage
         {
@@ -279,13 +278,11 @@ class RangeViewController: UIViewController
     
     fileprivate func beaconNotNearby(_ location: CLLocation!)
     {
-        print("beaconNotNearby \(location)")
         returnToMap()
     }
     
     fileprivate func beaconNotRanged()
     {
-        print("beaconNotRanged")
         returnToMap()
     }
 
@@ -317,5 +314,14 @@ class RangeViewController: UIViewController
         }
         
         timeView.text = str
+    }
+    
+    func showRemoteMessage(_ message: String!)
+    {
+        let alertController = UIAlertController(title: "Crowdping Alert", message: message, preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "Crowdping", style: .default, handler: nil)
+        alertController.addAction(OKAction)
+        present(alertController, animated: true)
     }
 }
