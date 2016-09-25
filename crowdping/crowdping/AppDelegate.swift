@@ -11,7 +11,6 @@ import UIKit
 import AudioToolbox
 import CoreLocation
 import CoreBluetooth
-import Firebase
 import UserNotifications
 
 extension Data {
@@ -52,9 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     {
         print("didFinishLaunchingWithOptions")
         
-        // Firebase configuration
-        
-        FIRApp.configure()
+        // Notifications configuration
         
         let notificationSettings = UIUserNotificationSettings(
             types: [.badge, .sound, .alert], categories: nil)
@@ -130,11 +127,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings)
     {
-        print("****************** FIRE MESSAGING ***********************")
         if notificationSettings.types != .none {
             application.registerForRemoteNotifications()
-            
-            connectToFirebase()
         }
     }
     
@@ -192,22 +186,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Notifications.removeObserver(stopLocationMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(startBeaconMonitoringObserver, from: notificationCentre)
         Notifications.removeObserver(stopBeaconMonitoringObserver, from: notificationCentre)
-    }
-    
-    func connectToFirebase()
-    {
-        FIRMessaging.messaging().connect
-        { (error) in
-            if (error != nil)
-            {
-                print("[FCM] Unable to connect with FCM. \(error)")
-            }
-            else
-            {
-                let token = FIRInstanceID.instanceID().token()!
-                print("[FCM] Connected to FCM with FCMID - \(token)")
-            }
-        }
     }
     
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager)
