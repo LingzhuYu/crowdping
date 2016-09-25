@@ -318,10 +318,21 @@ class ViewController: UIViewController, MKMapViewDelegate
     {
         let interval = startTime!.timeIntervalSinceNow * -1
         let ti       = Int(interval)
+        let seconds  = (ti % 60)
         let minutes  = (ti / 60) % 60
         let hours    = (ti / 3600)
+        let str : String!
         
-        timeView.text = String(format: "%0.2d:%0.2d", hours, minutes)
+        if minutes < 2
+        {
+            str = String(format: "%0.2d:%0.2d:%0.2d", hours, minutes, seconds)
+        }
+        else
+        {
+            str = String(format: "%0.2d:%0.2d", hours, minutes)
+        }
+        
+        timeView.text = str
     }
     
     func sendNotificationToCircle()
@@ -333,7 +344,7 @@ class ViewController: UIViewController, MKMapViewDelegate
         
         let parameters: Parameters =
         [
-            "to" : "/topics/crowdping",
+            "to" : "eX7jEHCS4Tw:APA91bGE6m-EdmCYUJSBzWI9T10wkj3T01oGclCc6FbuzhxJ0uf1FRRq5lQ-ra1kWO6GfySA4mp87KA4DTAWgdzHdxN8NMm07taRGXzcKu5jLNuxb8KFn9oSJe3G7EqsfTDCatElM492",
             "data": [
                 "Alert": "wake up!"
             ]
@@ -343,13 +354,26 @@ class ViewController: UIViewController, MKMapViewDelegate
         Alamofire.request("https://fcm.googleapis.com/fcm/send",
                           method: .post,
                           parameters: parameters,
+                          encoding: JSONEncoding.default,
                           headers: headers).responseJSON
             {
-                    (response) in
-                    print(response.request)  // original URL request
-                    print(response.response) // HTTP URL response
-                    print(response.data)     // server data
-                    print(response.result)   // result of response serialization            }
+                (response) in
+                
+                if let requestBody = response.request?.httpBody
+                {
+                    do {
+                        let jsonArray = try JSONSerialization.jsonObject(with: requestBody, options: [])
+                        print("Array: \(jsonArray)")
+                    }
+                    catch {
+                        print("Error: \(error)")
+                    }
+                }
+                
+                print("A " + String(describing: response.request?.httpBody))
+                print("B " + String(describing: response.response))
+                print("C " + String(describing: response.data))
+                print("D " + String(describing: response.result))
             }
         }
     

@@ -21,8 +21,6 @@
 		C71042DD1D960C25000C5CAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C71042DB1D960C25000C5CAC /* LaunchScreen.storyboard */; };
 		C71042E81D960C25000C5CAC /* crowdpingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042E71D960C25000C5CAC /* crowdpingTests.swift */; };
 		C71042F31D960C25000C5CAC /* crowdpingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C71042F21D960C25000C5CAC /* crowdpingUITests.swift */; };
-		C77E13921D97515600B79FC1 /* button alert_circles.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13901D97515600B79FC1 /* button alert_circles.pdf */; };
-		C77E13931D97515600B79FC1 /* button alert_police.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C77E13911D97515600B79FC1 /* button alert_police.pdf */; };
 		C77E13A61D9756E700B79FC1 /* Icon-App-20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13951D9756E700B79FC1 /* Icon-App-20x20@2x.png */; };
 		C77E13A71D9756E700B79FC1 /* Icon-App-20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13961D9756E700B79FC1 /* Icon-App-20x20@3x.png */; };
 		C77E13A81D9756E700B79FC1 /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C77E13971D9756E700B79FC1 /* Icon-App-29x29@1x.png */; };
@@ -89,8 +87,6 @@
 		C71042EE1D960C25000C5CAC /* crowdpingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = crowdpingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C71042F21D960C25000C5CAC /* crowdpingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crowdpingUITests.swift; sourceTree = "<group>"; };
 		C71042F41D960C25000C5CAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C77E13901D97515600B79FC1 /* button alert_circles.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_circles.pdf"; path = "crowdping/images/button alert_circles.pdf"; sourceTree = "<group>"; };
-		C77E13911D97515600B79FC1 /* button alert_police.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = "button alert_police.pdf"; path = "crowdping/images/button alert_police.pdf"; sourceTree = "<group>"; };
 		C77E13951D9756E700B79FC1 /* Icon-App-20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@2x.png"; path = "crowdping/icons/Icon-App-20x20@2x.png"; sourceTree = "<group>"; };
 		C77E13961D9756E700B79FC1 /* Icon-App-20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@3x.png"; path = "crowdping/icons/Icon-App-20x20@3x.png"; sourceTree = "<group>"; };
 		C77E13971D9756E700B79FC1 /* Icon-App-29x29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-29x29@1x.png"; path = "crowdping/icons/Icon-App-29x29@1x.png"; sourceTree = "<group>"; };
@@ -221,8 +217,6 @@
 		C77E138F1D97514800B79FC1 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C77E13901D97515600B79FC1 /* button alert_circles.pdf */,
-				C77E13911D97515600B79FC1 /* button alert_police.pdf */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -401,7 +395,6 @@
 				C77E13B41D9756E700B79FC1 /* Icon-App-60x60@2x.png in Resources */,
 				C77E13AC1D9756E700B79FC1 /* Icon-App-40x40@3x.png in Resources */,
 				C77E13A61D9756E700B79FC1 /* Icon-App-20x20@2x.png in Resources */,
-				C77E13921D97515600B79FC1 /* button alert_circles.pdf in Resources */,
 				C77E13B11D9756E700B79FC1 /* Icon-App-20x20@1x.png in Resources */,
 				C77E13AA1D9756E700B79FC1 /* Icon-App-29x29@3x.png in Resources */,
 				C77E13AE1D9756E700B79FC1 /* Icon-App-60x60@3x.png in Resources */,
@@ -411,7 +404,6 @@
 				C71042DA1D960C25000C5CAC /* Assets.xcassets in Resources */,
 				C77E13B01D9756E700B79FC1 /* Icon-App-76x76@2x.png in Resources */,
 				C77E13B51D9756E700B79FC1 /* Icon-App-76x76@3x.png in Resources */,
-				C77E13931D97515600B79FC1 /* button alert_police.pdf in Resources */,
 				C77E13AB1D9756E700B79FC1 /* Icon-App-40x40@1x.png in Resources */,
 				C77E13B21D9756E700B79FC1 /* Icon-App-40x40@2x.png in Resources */,
 				C71042D51D960C24000C5CAC /* Main.storyboard in Resources */,

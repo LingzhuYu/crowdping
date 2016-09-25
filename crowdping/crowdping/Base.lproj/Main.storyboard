@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,42 +19,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yzK-jG-Rcg">
-                                <frame key="frameInset" minY="85" width="375" height="437"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </mapView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RM-ks-0nV">
-                                <frame key="frameInset" minX="16" minY="28" width="343" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yzK-jG-Rcg"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RM-ks-0nV">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="HRy-os-8Zo"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
-                                <frame key="frameInset" minX="53" minY="579" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="notifySwitchChanged:" destination="mgv-zU-Lnq" eventType="valueChanged" id="qDd-qV-oDi"/>
-                                </connections>
-                            </switch>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-yh-JL9">
-                                <frame key="frameInset" minX="237" minY="549" width="122" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bf-yh-JL9">
                                 <state key="normal" image="PoliceImage"/>
                                 <connections>
                                     <action selector="notifyPolice:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="Y13-lU-RMM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-q8-IP3">
-                                <frame key="frameInset" minX="154" minY="570" width="67" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuu-q8-IP3">
                                 <state key="normal" image="CircleButton"/>
                                 <connections>
                                     <action selector="notifyCircle:" destination="mgv-zU-Lnq" eventType="touchUpInside" id="WMx-bo-kLZ"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" onImage="CircleButton" offImage="PoliceImage" translatesAutoresizingMaskIntoConstraints="NO" id="xZV-bx-jNt">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="121-Tx-DD2"/>
+                                    <constraint firstAttribute="width" constant="49" id="T1K-QL-kMZ"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="0.0" blue="0.16443011569999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="notifySwitchChanged:" destination="mgv-zU-Lnq" eventType="valueChanged" id="qDd-qV-oDi"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.23529411764705882" green="0.39215686274509803" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wuu-q8-IP3" firstAttribute="leading" secondItem="xZV-bx-jNt" secondAttribute="trailing" constant="83" id="3Zs-we-eVg"/>
+                            <constraint firstItem="Wuu-q8-IP3" firstAttribute="top" secondItem="7Bf-yh-JL9" secondAttribute="top" id="8vc-7D-4Fi"/>
+                            <constraint firstItem="3RM-ks-0nV" firstAttribute="centerX" secondItem="Wuu-q8-IP3" secondAttribute="centerX" id="D54-7L-WX2"/>
+                            <constraint firstItem="xZV-bx-jNt" firstAttribute="centerY" secondItem="Wuu-q8-IP3" secondAttribute="centerY" id="HaX-x2-thh"/>
+                            <constraint firstItem="Wuu-q8-IP3" firstAttribute="bottom" secondItem="7Bf-yh-JL9" secondAttribute="bottom" id="J7J-YG-tPN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3RM-ks-0nV" secondAttribute="trailing" constant="4" id="U6e-NN-MoP"/>
+                            <constraint firstItem="3RM-ks-0nV" firstAttribute="leading" secondItem="aGu-rP-Xf1" secondAttribute="leadingMargin" constant="-4" id="W1I-8Z-ZAR"/>
+                            <constraint firstItem="GxT-Pe-iS9" firstAttribute="top" secondItem="xZV-bx-jNt" secondAttribute="bottom" constant="30" id="bTR-Ie-ryc"/>
+                            <constraint firstItem="3RM-ks-0nV" firstAttribute="top" secondItem="W0e-ti-yJ2" secondAttribute="bottom" id="fjL-5d-VAY"/>
+                            <constraint firstItem="yzK-jG-Rcg" firstAttribute="top" secondItem="3RM-ks-0nV" secondAttribute="bottom" constant="16" id="jEq-K9-Cc4"/>
+                            <constraint firstItem="7Bf-yh-JL9" firstAttribute="leading" secondItem="Wuu-q8-IP3" secondAttribute="trailing" constant="67" id="l7Y-mq-YNx"/>
+                            <constraint firstItem="xZV-bx-jNt" firstAttribute="leading" secondItem="aGu-rP-Xf1" secondAttribute="leadingMargin" id="nWa-Dl-wg8"/>
+                            <constraint firstAttribute="trailing" secondItem="yzK-jG-Rcg" secondAttribute="trailing" id="niG-Mz-Bxe"/>
+                            <constraint firstItem="Wuu-q8-IP3" firstAttribute="top" secondItem="yzK-jG-Rcg" secondAttribute="bottom" constant="19" id="piW-pc-7Bs"/>
+                            <constraint firstItem="yzK-jG-Rcg" firstAttribute="leading" secondItem="aGu-rP-Xf1" secondAttribute="leading" id="qIQ-dD-Yo6"/>
+                            <constraint firstItem="GxT-Pe-iS9" firstAttribute="top" secondItem="Wuu-q8-IP3" secondAttribute="bottom" constant="10" id="rMk-Gd-B14"/>
+                            <constraint firstItem="3RM-ks-0nV" firstAttribute="trailing" secondItem="7Bf-yh-JL9" secondAttribute="trailing" id="uXo-cj-IyE"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="circleButton" destination="Wuu-q8-IP3" id="SYN-io-1zz"/>
@@ -69,7 +86,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CircleButton" width="95" height="70"/>
-        <image name="PoliceImage" width="73" height="70"/>
+        <image name="CircleButton" width="95" height="95"/>
+        <image name="PoliceImage" width="95" height="95"/>
     </resources>
 </document>
